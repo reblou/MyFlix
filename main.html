@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <title>MyFlix</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Hello there!</h1>
+    <input type="file" webkitdirectory>
+    <div></div>
 </body>
+
+<script>
+    document.querySelector("input").onchange = function() {
+        console.log(this.files);
+        [].slice.call(this.files).forEach( function(v) {
+            var link = "file:///home/rla/" + v.webkitRelativePath;
+            $("body").append(`<a href="${link}"> ${v.name} </a>`);
+        });
+    };
+</script>
 </html>
