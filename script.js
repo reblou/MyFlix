@@ -1,22 +1,55 @@
-document.querySelector("input").onchange = function() {
-    console.log(this.files);
-    hideInput();
+const {shell} = require('electron')
 
-    let re = /video\/*/;
 
-    var filelist = [].slice.call(this.files);
-    filelist.sort(function(a, b) {
-        return (a.name < b.name ? -1 : (a.name > b.name ? 1 : 0));
-    });
-    
-    filelist.forEach( function(v) {
-        var link = "file:///home/rla/" + v.webkitRelativePath;
-        if(re.test(v.type)) {
-            $("body").append(`<div><a href="${link}"> ${v.name} </a></div>`);
+
+const submitListener = document
+  .querySelector('form')
+  .addEventListener('submit', (event) => {
+      event.preventDefault()
+
+      const files = [...document.getElementById('filePicker').files]
+      let re = /video\/*/;
+
+      let div = document.createElement("div");
+      var a = document.createElement("a");
+      var link = document.createTextNode("test");
+
+      a.appendChild(link);
+
+      a.href = "https://www.google.com";
+      div.appendChild(a);
+      document.body.appendChild(div)
+
+      files.forEach((item, i) => {
+        if (re.test(item.type)) {
+          console.log(item)
+
+          let div = document.createElement("div");
+          var a = document.createElement("a");
+          var link = document.createTextNode(item.name);
+
+          a.appendChild(link);
+
+          a.href = "file://" + item.path;
+          div.appendChild(a);
+          document.body.appendChild(div)
+
         }
-    });
-};
+      });
 
-function hideInput() {
-    $("#folderInput").toggle();
-}
+      const links = document.querySelectorAll('a[href]')
+
+      Array.prototype.forEach.call(links, (link) => {
+        const url = link.getAttribute('href')
+        if (url.indexOf('file://') === 0) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault()
+            shell.openExternal(url)
+          })
+        }
+      })
+
+
+
+
+  })
