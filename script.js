@@ -32,16 +32,14 @@ class Node {
       prefix += " ";
     }
 
-    var p = "";
-    if (this.parent != undefined) {
-      var p = this.parent.name;
-    }
 
-    console.log(prefix + this.name + "(parent: " + p + ")");
+    console.log(prefix + this.name);
     this.children.forEach((item, i) => {
       item.print(depth+1);
     });
   }
+
+
 }
 
 const {shell} = require('electron')
