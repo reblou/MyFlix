@@ -1,8 +1,9 @@
 class Node {
-  constructor(name, link) {
+  constructor(name, link, parent) {
     this.children = [];
     this.name = name;
     this.link = link;
+    this.parent = parent;
   }
 
   get(name) {
@@ -12,7 +13,7 @@ class Node {
       }
     }
 
-    this.children.push(new Node(name, ""));
+    this.children.push(new Node(name, "", this));
     return this.children[this.children.length-1];
   }
 
@@ -31,7 +32,12 @@ class Node {
       prefix += " ";
     }
 
-    console.log(prefix + this.name);
+    var p = "";
+    if (this.parent != undefined) {
+      var p = this.parent.name;
+    }
+
+    console.log(prefix + this.name + "(parent: " + p + ")");
     this.children.forEach((item, i) => {
       item.print(depth+1);
     });
