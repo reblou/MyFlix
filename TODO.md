@@ -1,6 +1,5 @@
 #TODO
 
--group by show name
 -regex to clear up names
 -get show icons
 
