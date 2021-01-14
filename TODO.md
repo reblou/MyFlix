@@ -1,7 +1,7 @@
 #TODO
 
 -add Node.search to find nodes by name
--add render nodes function
+-video file nodes have path 
 
 
 
