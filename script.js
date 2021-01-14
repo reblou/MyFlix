@@ -38,8 +38,18 @@ class Node {
       item.print(depth+1);
     });
   }
+}
 
+function drawNodes(type, text, href) {
+        let div = document.createElement("div");
+        var a = document.createElement(type);
+        var link = document.createTextNode(text);
+        a.appendChild(link);
 
+        // a.href = "file://" + item.path;
+        a.href = href;
+        div.appendChild(a);
+        document.body.appendChild(div);
 }
 
 const {shell} = require('electron')
@@ -63,14 +73,14 @@ const submitListener = document
         if (re.test(item.type)) {
           // console.log(item)
 
-          let div = document.createElement("div");
-          var a = document.createElement("a");
-          var link = document.createTextNode(item.name);
-          a.appendChild(link);
-
-          a.href = "file://" + item.path;
-          div.appendChild(a);
-          document.body.appendChild(div);
+          // let div = document.createElement("div");
+          // var a = document.createElement("a");
+          // var link = document.createTextNode(item.name);
+          // a.appendChild(link);
+          //
+          // a.href = "file://" + item.path;
+          // div.appendChild(a);
+          // document.body.appendChild(div);
 
           var spt = item.webkitRelativePath.split("/");
           //console.log(spt);
@@ -80,19 +90,33 @@ const submitListener = document
         }
       });
 
-
       root.print(0);
+      
+      root.children[0].children.forEach(item => {
+        drawNodes("a", item.name, "javascript:;");
+      });
 
-      const links = document.querySelectorAll('a[href]')
+      const links = document.querySelectorAll('a')
 
-      Array.prototype.forEach.call(links, (link) => {
-        const url = link.getAttribute('href')
-        if (url.indexOf('file://') === 0) {
+      links.forEach((link) => {
+        const url = link.getAttribute('href');
+        if (url == "javascript:;") {
+          //for folder clicks
           link.addEventListener('click', (e) => {
+            console.log("null click");
+            let div = document.createElement("div");
+            var p = document.createElement("p");
+            p.appendChild(document.createTextNode("Testing...."));
+            div.appendChild(p);
+            document.body.appendChild(div);
+          });
+        } else if (url.indexOf('file://') === 0) {
+          link.addEventListener('click', (e) => {
+            console.log("file click");
             e.preventDefault()
             shell.openExternal(url)
-          })
+          });
         }
-      })
+      });
 
   })
