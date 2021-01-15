@@ -1,5 +1,6 @@
 function drawNodes(type, text, href) {
         let div = document.createElement("div");
+        div.classList.add("ns");
         var a = document.createElement(type);
         var link = document.createTextNode(text);
         a.appendChild(link);
@@ -10,12 +11,22 @@ function drawNodes(type, text, href) {
         document.body.appendChild(div);
 }
 
+function clearNodes() {
+  var x = document.getElementsByClassName("ns");
+  console.log("Clearnodes length of ns class elems: " + x.length);
+  var len = x.length
+  while(x[0]) {
+    x[0].remove();
+  }
+}
+
 const {shell} = require('electron')
 
 const submitListener = document
   .querySelector('form')
   .addEventListener('submit', (event) => {
       //TODO: remove previous files in div
+      clearNodes();
 
       event.preventDefault()
 
@@ -48,7 +59,7 @@ const submitListener = document
         }
       });
 
-      root.print(0);
+      // root.print(0);
 
       root.children[0].children.forEach(item => {
         drawNodes("a", item.name, "javascript:;");
