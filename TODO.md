@@ -1,8 +1,6 @@
 #TODO
 
--add Node.search to find nodes by name
--video file nodes have path
-
+-add Node.search to find nodes by name (? path for dupes?)
 
 
 -regex to clear up names

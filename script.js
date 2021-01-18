@@ -54,15 +54,15 @@ const submitListener = document
           var spt = item.webkitRelativePath.split("/");
           //console.log(spt);
 
-          root.add(spt);
+          root.add(item.path, spt);
 
         }
       });
 
-      // root.print(0);
+      root.print(0);
 
       root.children[0].children.forEach(item => {
-        drawNodes("a", item.name, "javascript:;");
+        drawNodes("a", item.name, item.link);
       });
 
       const links = document.querySelectorAll('a')
@@ -80,8 +80,10 @@ const submitListener = document
             document.body.appendChild(div);
           });
         } else if (url.indexOf('file://') === 0) {
+          //for file clicks
           link.addEventListener('click', (e) => {
             console.log("file click");
+            console.log("Trying to open: " + url);
             e.preventDefault()
             shell.openExternal(url)
           });
