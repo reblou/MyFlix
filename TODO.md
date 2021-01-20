@@ -1,6 +1,6 @@
 #TODO
 
--add Node.search to find nodes by name (? path for dupes?)
+-up button
 
 
 -regex to clear up names

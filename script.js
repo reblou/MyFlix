@@ -1,4 +1,33 @@
-function drawNodes(type, text, href) {
+function addListeners(links) {
+  links.forEach((link) => {
+        const url = link.getAttribute('href');
+        if (url == "javascript:;") {
+          //for folder clicks
+          link.addEventListener('click', (e) => {
+            var s = link.innerHTML;
+            console.log("folder click s: " + s);
+            curpath.push(s);
+
+            var next = root.get(curpath.slice(0));
+            clearNodes();
+            drawNodes(next);
+            console.log("Curpath: ");
+            for(i=0; i<curpath.length; i++) {
+              console.log(curpath[i]);
+            }
+          });
+        } else if (url.indexOf('file://') === 0) {
+          //for file clicks
+          link.addEventListener('click', (e) => {
+            console.log("Trying to open: " + url);
+            e.preventDefault()
+            shell.openExternal(url)
+          });
+        }
+    });
+}
+
+function drawNode(type, text, href) {
         let div = document.createElement("div");
         div.classList.add("ns");
         var a = document.createElement(type);
@@ -9,6 +38,15 @@ function drawNodes(type, text, href) {
         a.href = href;
         div.appendChild(a);
         document.body.appendChild(div);
+}
+
+function drawNodes(node) {
+  node.children.forEach(item => {
+    drawNode("a", item.name, item.link);
+  });
+
+  var links = document.querySelectorAll('a');
+  addListeners(links);
 }
 
 function clearNodes() {
@@ -25,31 +63,18 @@ const {shell} = require('electron')
 const submitListener = document
   .querySelector('form')
   .addEventListener('submit', (event) => {
-      //TODO: remove previous files in div
       clearNodes();
 
       event.preventDefault()
 
       const files = [...document.getElementById('filePicker').files]
       let re = /video\/*/;
-      // files.sort(function(a, b) {
-      //   return (a.webkitRelativePath < b.webkitRelativePath ? -1 : (a.webkitRelativePath > b.webkitRelativePath ? 1 : 0));
-      // });
 
-      var root = new Node("Root", "");
+      root = new Node("Root", "");
+      curpath = [];
 
       files.forEach((item, i) => {
         if (re.test(item.type)) {
-          // console.log(item)
-
-          // let div = document.createElement("div");
-          // var a = document.createElement("a");
-          // var link = document.createTextNode(item.name);
-          // a.appendChild(link);
-          //
-          // a.href = "file://" + item.path;
-          // div.appendChild(a);
-          // document.body.appendChild(div);
 
           var spt = item.webkitRelativePath.split("/");
           //console.log(spt);
@@ -59,35 +84,11 @@ const submitListener = document
         }
       });
 
+      root = root.children[0];
       root.print(0);
 
-      root.children[0].children.forEach(item => {
-        drawNodes("a", item.name, item.link);
-      });
-
-      const links = document.querySelectorAll('a')
-
-      links.forEach((link) => {
-        const url = link.getAttribute('href');
-        if (url == "javascript:;") {
-          //for folder clicks
-          link.addEventListener('click', (e) => {
-            console.log("null click");
-            let div = document.createElement("div");
-            var p = document.createElement("p");
-            p.appendChild(document.createTextNode("Testing...."));
-            div.appendChild(p);
-            document.body.appendChild(div);
-          });
-        } else if (url.indexOf('file://') === 0) {
-          //for file clicks
-          link.addEventListener('click', (e) => {
-            console.log("file click");
-            console.log("Trying to open: " + url);
-            e.preventDefault()
-            shell.openExternal(url)
-          });
-        }
-      });
-
+      // root.children[0].children.forEach(item => {
+      //   drawNodes("a", item.name, item.link);
+      // });
+      drawNodes(root);
   })

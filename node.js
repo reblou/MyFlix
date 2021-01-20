@@ -40,9 +40,22 @@ class Node {
     }
 
 
-    console.log(prefix + this.name + "(" + this.link + ")");
+    console.log(prefix + this.name);
     this.children.forEach((item, i) => {
       item.print(depth+1);
     });
+  }
+
+  get(path) {
+    if (path.length < 1) return this;
+
+    var n = path.shift();
+    for (var i = 0; i < this.children.length; i++) {
+      if (this.children[i].name == n) {
+        return this.children[i].get(path);
+      }
+    }
+    console.log("error couldn't find: " + n);
+    return -1;
   }
 }
