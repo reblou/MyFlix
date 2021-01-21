@@ -1,8 +1,5 @@
 #TODO
 
--up button
-
-
 -regex to clear up names
 -get show icons
 

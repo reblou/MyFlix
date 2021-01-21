@@ -9,7 +9,6 @@ function addListeners(links) {
             curpath.push(s);
 
             var next = root.get(curpath.slice(0));
-            clearNodes();
             drawNodes(next);
             console.log("Curpath: ");
             for(i=0; i<curpath.length; i++) {
@@ -41,6 +40,7 @@ function drawNode(type, text, href) {
 }
 
 function drawNodes(node) {
+  clearNodes();
   node.children.forEach(item => {
     drawNode("a", item.name, item.link);
   });
@@ -58,13 +58,23 @@ function clearNodes() {
   }
 }
 
+function upButton() {
+  console.log("UP!");
+  var cur = root.get(curpath.slice(0));
+  var pre = cur.parent;
+  if (pre == undefined) {
+    console.log("pre is undefined");
+    return;
+  }
+  curpath.pop();
+  drawNodes(pre);
+}
+
 const {shell} = require('electron')
 
 const submitListener = document
   .querySelector('form')
   .addEventListener('submit', (event) => {
-      clearNodes();
-
       event.preventDefault()
 
       const files = [...document.getElementById('filePicker').files]
