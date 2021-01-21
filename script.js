@@ -21,6 +21,22 @@ function addListeners(links) {
             console.log("Trying to open: " + url);
             e.preventDefault()
             shell.openExternal(url)
+
+            var path = "";
+            for(i = 0; i<curpath.length; i++) {
+              path += curpath[i] + "\\";
+            }
+            var curnode = root.get(curpath.slice(0));
+            //get child clicked on
+            // root.children.forEach(item => {
+            //   if (item.name == link.innerHTML) {
+            //   //TODO: chang if change names for display
+            //   }
+            // });
+
+            path += link.innerHTML;
+            console.log("Path: " + path);
+            localStorage.setItem(path, true);
           });
         }
     });
