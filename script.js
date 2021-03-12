@@ -5,8 +5,9 @@ function addListeners(links) {
           //for folder clicks
           link.addEventListener('click', (e) => {
             var s = link.innerHTML;
-            console.log("folder click s: " + s);
-            curpath.push(s);
+            var fn = link.getAttribute("data-filename");
+            console.log("folder click fn: " + fn);
+            curpath.push(fn);
 
             var next = root.get(curpath.slice(0));
             drawNodes(next);
@@ -47,8 +48,9 @@ function drawNode(type, text, href) {
         let div = document.createElement("div");
         var a = document.createElement(type);
         a.classList.add("ns");
-        var link = document.createTextNode(text);
+        var link = document.createTextNode(parseName(text));
         a.appendChild(link);
+        a.setAttribute("data-filename", text);
 
         // a.href = "file://" + item.path;
         a.href = href;
