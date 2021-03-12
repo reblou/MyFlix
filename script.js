@@ -33,6 +33,7 @@ function addListeners(links) {
             //   //TODO: chang if change names for display
             //   }
             // });
+            parseName(link.innerHTML);
 
             path += link.innerHTML;
             console.log("Path: " + path);

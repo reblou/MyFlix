@@ -7,6 +7,7 @@
 
 -css look of nodes
 -regex to clear up names
+  -clean name vs true folder name?
 -get show icons
 
 -watched on open / unwatch button
