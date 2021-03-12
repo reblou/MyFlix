@@ -11,5 +11,5 @@
 
 -watched on open / unwatch button
 
-//bugs:
+#bugs:
 -can break by going up to root

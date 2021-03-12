@@ -44,8 +44,8 @@ function addListeners(links) {
 
 function drawNode(type, text, href) {
         let div = document.createElement("div");
-        div.classList.add("ns");
         var a = document.createElement(type);
+        a.classList.add("ns");
         var link = document.createTextNode(text);
         a.appendChild(link);
 
