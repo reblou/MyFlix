@@ -23,22 +23,18 @@ function addListeners(links) {
             e.preventDefault()
             shell.openExternal(url)
 
-            var path = "";
-            for(i = 0; i<curpath.length; i++) {
-              path += curpath[i] + "\\";
-            }
-            var curnode = root.get(curpath.slice(0));
-            //get child clicked on
-            // root.children.forEach(item => {
-            //   if (item.name == link.innerHTML) {
-            //   //TODO: chang if change names for display
-            //   }
-            // });
-            parseName(link.innerHTML);
-
-            path += link.innerHTML;
-            console.log("Path: " + path);
-            localStorage.setItem(path, true);
+            // var path = "";
+            // for(i = 0; i<curpath.length; i++) {
+            //   path += curpath[i] + "\\";
+            // }
+            // var curnode = root.get(curpath.slice(0));
+            //
+            // parseName(link.getAttribute("data-filename"));
+            //
+            // path += link.getAttribute("data-filename");
+            // console.log("Path: " + path);
+            localStorage.setItem(url, true);
+            console.log("storage url set true");
           });
         }
     });
@@ -48,6 +44,14 @@ function drawNode(type, text, href) {
         let div = document.createElement("div");
         var a = document.createElement(type);
         a.classList.add("ns");
+
+        test = localStorage.getItem(href);
+        console.log("test: " + test);
+        if (localStorage.getItem(href)) {
+          a.classList.add("ns-watched");
+          console.log("is watched.");
+        }
+
         var link = document.createTextNode(parseName(text));
         a.appendChild(link);
         a.setAttribute("data-filename", text);

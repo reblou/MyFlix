@@ -18,6 +18,11 @@ html {
   word-wrap: break-word;
 }
 
+.ns-watched {
+  text-decoration-color: #cc3399;
+  background-color: #cc3399;
+}
+
 a:hover {
   color: #ffffff;
   background-color: #4d4d4d;
