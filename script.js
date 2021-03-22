@@ -93,6 +93,27 @@ function upButton() {
   drawNodes(pre);
 }
 
+function initialise(files) {
+  let re = /video\/*/;
+
+  root = new Node("Root", "");
+  curpath = [];
+
+  files.forEach((item, i) => {
+    if (re.test(item.type)) {
+      var spt = item.webkitRelativePath.split("/");
+      //console.log(spt);
+      root.add(item.path, spt);
+
+    }
+  });
+
+  root = root.children[0];
+  root.print(0);
+  drawNodes(root);
+
+}
+
 const {shell} = require('electron')
 
 const submitListener = document
@@ -100,28 +121,9 @@ const submitListener = document
   .addEventListener('submit', (event) => {
       event.preventDefault()
 
+      fp = document.getElementById('filePicker');
       const files = [...document.getElementById('filePicker').files]
-      let re = /video\/*/;
 
-      root = new Node("Root", "");
-      curpath = [];
-
-      files.forEach((item, i) => {
-        if (re.test(item.type)) {
-
-          var spt = item.webkitRelativePath.split("/");
-          //console.log(spt);
-
-          root.add(item.path, spt);
-
-        }
-      });
-
-      root = root.children[0];
-      root.print(0);
-
-      // root.children[0].children.forEach(item => {
-      //   drawNodes("a", item.name, item.link);
-      // });
-      drawNodes(root);
+      localStorage.setItem("files", JSON.stringify(files));
+      initialise(files);
   })
