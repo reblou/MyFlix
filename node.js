@@ -58,4 +58,12 @@ class Node {
     console.log("error couldn't find: " + n);
     return -1;
   }
+
+  getnodelist(array) {
+    array.push(this);
+    for (var i = 0; i < this.children.length; i++) {
+      this.children[i].getnodelist(array);
+    }
+    return array;
+  }
 }

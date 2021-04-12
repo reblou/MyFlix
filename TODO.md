@@ -1,6 +1,5 @@
 #TODO
 
--remember folder chosen
 -get folder controls moved to folder
 
 -remember watched

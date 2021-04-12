@@ -1,6 +1,12 @@
 // console.log("testing start.js");
 fs = localStorage.getItem("files");
-console.log(fs);
 fsp = JSON.parse(fs);
-console.log(fsp);
-// initialise(fsp);
+
+root = new Node("Root", "");
+curpath = [];
+fsp.forEach((item, i) => {
+  root.add(item.path, item.split);
+});
+
+root = root.children[0];
+drawNodes(root);

@@ -99,19 +99,22 @@ function initialise(files) {
   root = new Node("Root", "");
   curpath = [];
 
+  myfilelist = [];
+
   files.forEach((item, i) => {
     if (re.test(item.type)) {
       var spt = item.webkitRelativePath.split("/");
       //console.log(spt);
       root.add(item.path, spt);
-
+      myfilelist.push(new MyFile(item.path, item.webkitRelativePath.split("/")));
     }
   });
 
   root = root.children[0];
   root.print(0);
   drawNodes(root);
-
+  console.log(myfilelist);
+  localStorage.setItem("files", JSON.stringify(myfilelist));
 }
 
 const {shell} = require('electron')
@@ -124,6 +127,8 @@ const submitListener = document
       fp = document.getElementById('filePicker');
       const files = [...document.getElementById('filePicker').files]
 
-      localStorage.setItem("files", JSON.stringify(files));
+      // localStorage.setItem("files", JSON.stringify(files));
       initialise(files);
+
+
   })
