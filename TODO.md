@@ -5,6 +5,8 @@
 
   -group show into one node instead of file system structure
 
+-being able to select more than one folder ?
+
 -remember watched
   -unwatch button
 
@@ -17,4 +19,4 @@
 
 #bugs:
 -can break by going up to root
--jp named videos not opening? 
+-jp named videos not opening?

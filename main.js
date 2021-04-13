@@ -21,6 +21,9 @@ function createWindow () {
             })
           }
         },
+        {role: 'reload',
+        accelerator: 'Ctrl+R'
+        },
         {type: 'separator'},
         {label: 'exit',
         accelerator: 'CmdOrCtrl+Q',
