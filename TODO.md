@@ -1,6 +1,9 @@
 #TODO
 
 -get folder controls moved to folder
+  -get fs info from folder name
+
+  -group show into one node instead of file system structure
 
 -remember watched
   -unwatch button

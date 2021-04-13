@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, dialog } = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -8,6 +8,30 @@ function createWindow () {
       nodeIntegration: true
     }
   })
+
+  const menu = Menu.buildFromTemplate([
+    {
+      label: 'Root Folder',
+      submenu: [
+        {label: 'Open folder',
+          accelerator: 'CmdOrCtrl+O',
+          click() {
+            dialog.showOpenDialog({properties: ['openDirectory']}).then(result => {
+              console.log(result.filePaths);
+            })
+          }
+        },
+        {type: 'separator'},
+        {label: 'exit',
+        accelerator: 'CmdOrCtrl+Q',
+          click() {
+            app.quit();
+          }
+        }
+      ]
+    }
+  ]);
+  Menu.setApplicationMenu(menu);
 
   win.loadFile('main.html')
   win.webContents.openDevTools()

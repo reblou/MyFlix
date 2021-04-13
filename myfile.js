@@ -3,8 +3,4 @@ class MyFile {
     this.path = path;
     this.split = split;
   }
-
-  tonode() {
-    
-  }
 }
