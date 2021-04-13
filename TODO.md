@@ -17,3 +17,4 @@
 
 #bugs:
 -can break by going up to root
+-jp named videos not opening? 
