@@ -1,4 +1,3 @@
-// console.log("testing start.js");
 fs = localStorage.getItem("files");
 fsp = JSON.parse(fs);
 

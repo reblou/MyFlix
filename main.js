@@ -1,4 +1,14 @@
 const { app, BrowserWindow, Menu, dialog } = require('electron')
+const fs = require('fs')
+
+function openRootFolder() {
+  dialog.showOpenDialog({properties: ['openDirectory']}).then(result => {
+    console.log(result.filePaths);
+    fs.readdir(result.filePaths[0], function(err, files) {
+      console.log(files);
+    });
+  })
+}
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -16,9 +26,7 @@ function createWindow () {
         {label: 'Open folder',
           accelerator: 'CmdOrCtrl+O',
           click() {
-            dialog.showOpenDialog({properties: ['openDirectory']}).then(result => {
-              console.log(result.filePaths);
-            })
+            openRootFolder();
           }
         },
         {role: 'reload',

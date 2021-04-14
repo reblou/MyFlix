@@ -46,10 +46,10 @@ function drawNode(type, text, href) {
         a.classList.add("ns");
 
         test = localStorage.getItem(href);
-        console.log("test: " + test);
+        // console.log("test: " + test);
         if (localStorage.getItem(href)) {
           a.classList.add("ns-watched");
-          console.log("is watched.");
+          // console.log("is watched.");
         }
 
         var link = document.createTextNode(parseName(text));
@@ -74,7 +74,7 @@ function drawNodes(node) {
 
 function clearNodes() {
   var x = document.getElementsByClassName("ns");
-  console.log("Clearnodes length of ns class elems: " + x.length);
+  // console.log("Clearnodes length of ns class elems: " + x.length);
   var len = x.length
   while(x[0]) {
     x[0].remove();

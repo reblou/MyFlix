@@ -7,6 +7,8 @@
 
 -being able to select more than one folder ?
 
+-needs refresh button to update files according to file system/ refresh on startup ?
+
 -remember watched
   -unwatch button
 
