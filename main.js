@@ -1,17 +1,28 @@
-const { app, BrowserWindow, Menu, dialog } = require('electron')
+const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron')
 const fs = require('fs')
+
+let win;
 
 function openRootFolder() {
   dialog.showOpenDialog({properties: ['openDirectory']}).then(result => {
     console.log(result.filePaths);
-    fs.readdir(result.filePaths[0], function(err, files) {
+    fs.readdir(result.filePaths[0], (err, files) => {
+      var path = result.filePaths[0];
       console.log(files);
+      files.forEach((item, i) => {
+        abspath = console.log(path+'\\'+item);
+        split = [item];
+        console.log(split);
+      });
+      win.webContents.send("test", "hello");
+
     });
+
   })
 }
 
 function createWindow () {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1500,
     height: 800,
     webPreferences: {

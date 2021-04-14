@@ -1,3 +1,6 @@
+const {shell, ipcRenderer } = require('electron')
+
+
 function addListeners(links) {
   links.forEach((link) => {
         const url = link.getAttribute('href');
@@ -117,7 +120,6 @@ function initialise(files) {
   localStorage.setItem("files", JSON.stringify(myfilelist));
 }
 
-const {shell} = require('electron')
 
 const submitListener = document
   .querySelector('form')
@@ -132,3 +134,8 @@ const submitListener = document
 
 
   })
+
+// recieves data from main when folder selected
+ipcRenderer.on("test", (event, data) => {
+  console.log("test from main recieved!");
+});
