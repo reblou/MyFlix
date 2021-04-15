@@ -91,7 +91,8 @@ function initialise(myfileslist) {
   curpath = [];
 
   myfileslist.forEach((item) => {
-    root.add(item.path, item.split);
+    spt = item.split.slice();
+    root.add(item.path, spt);
   });
 
   root.print(0);
