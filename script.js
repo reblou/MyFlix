@@ -85,35 +85,24 @@ function clearNodes() {
   }
 }
 
-function initialise(files) {
-  let re = /video\/*/;
-
+// takes list of myfile objs, turns into nodes and draws
+function initialise(myfileslist) {
   root = new Node("Root", "");
   curpath = [];
 
-  myfilelist = [];
-
-  files.forEach((item, i) => {
-    if (re.test(item.type)) {
-      var spt = item.webkitRelativePath.split("/");
-      //console.log(spt);
-      root.add(item.path, spt);
-      myfilelist.push(new MyFile(item.path, item.webkitRelativePath.split("/")));
-    }
+  myfileslist.forEach((item) => {
+    root.add(item.path, item.split);
   });
 
-  root = root.children[0];
   root.print(0);
   drawNodes(root);
-  console.log(myfilelist);
-  localStorage.setItem("files", JSON.stringify(myfilelist));
+  console.log(myfileslist);
+  localStorage.setItem("files", JSON.stringify(myfileslist));
 }
 
 // recieves data from main when folder selected
 ipcRenderer.on("RootFolder", (event, data) => {
   console.log("folder from main recieved!" + data);
-  root = new Node("Root", "");
-  curpath = [];
   myfilelist = [];
 
 
@@ -126,12 +115,10 @@ ipcRenderer.on("RootFolder", (event, data) => {
       split = [item];
       console.log(split);
 
-      root.add(abspath, split.slice());
       myfilelist.push(new MyFile(abspath, split));
     });
-    root.print(0);
-    drawNodes(root);
-    console.log(myfilelist);
-    localStorage.setItem("files", JSON.stringify(myfilelist));
+
+    initialise(myfilelist)
+
   });
 });

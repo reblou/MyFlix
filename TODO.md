@@ -3,7 +3,7 @@
 ##Features
 
 -get folder controls moved to folder
-  -get fs info from folder name
+  -need to test for video file type
 
   -group show into one node instead of file system structure
 
@@ -21,7 +21,6 @@
 -get show icons
 
 ##code
--refactor initialise()
 
 
 
