@@ -1,5 +1,7 @@
 #TODO
 
+##Features
+
 -get folder controls moved to folder
   -get fs info from folder name
 
@@ -17,6 +19,10 @@
 -regex to clear up names
 
 -get show icons
+
+##code
+-refactor initialise()
+
 
 
 #bugs:

@@ -1,4 +1,5 @@
 const {shell, ipcRenderer } = require('electron')
+const fs = require('fs')
 
 
 function addListeners(links) {
@@ -84,18 +85,6 @@ function clearNodes() {
   }
 }
 
-function upButton() {
-  console.log("UP!");
-  var cur = root.get(curpath.slice(0));
-  var pre = cur.parent;
-  if (pre == undefined) {
-    console.log("pre is undefined");
-    return;
-  }
-  curpath.pop();
-  drawNodes(pre);
-}
-
 function initialise(files) {
   let re = /video\/*/;
 
@@ -120,22 +109,29 @@ function initialise(files) {
   localStorage.setItem("files", JSON.stringify(myfilelist));
 }
 
-
-const submitListener = document
-  .querySelector('form')
-  .addEventListener('submit', (event) => {
-      event.preventDefault()
-
-      fp = document.getElementById('filePicker');
-      const files = [...document.getElementById('filePicker').files]
-
-      // localStorage.setItem("files", JSON.stringify(files));
-      initialise(files);
-
-
-  })
-
 // recieves data from main when folder selected
-ipcRenderer.on("test", (event, data) => {
-  console.log("test from main recieved!");
+ipcRenderer.on("RootFolder", (event, data) => {
+  console.log("folder from main recieved!" + data);
+  root = new Node("Root", "");
+  curpath = [];
+  myfilelist = [];
+
+
+  //TODO: lots of duplicate code with initialise() same in start.js
+  fs.readdir(data, (err, files) => {
+    console.log(files);
+    files.forEach((item) => {
+      abspath = data + '\\' + item
+      console.log(abspath);
+      split = [item];
+      console.log(split);
+
+      root.add(abspath, split.slice());
+      myfilelist.push(new MyFile(abspath, split));
+    });
+    root.print(0);
+    drawNodes(root);
+    console.log(myfilelist);
+    localStorage.setItem("files", JSON.stringify(myfilelist));
+  });
 });
