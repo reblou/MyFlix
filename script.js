@@ -1,5 +1,6 @@
 const {shell, ipcRenderer } = require('electron')
 const fs = require('fs')
+const path = require('path')
 
 
 function addListeners(links) {
@@ -27,16 +28,6 @@ function addListeners(links) {
             e.preventDefault()
             shell.openExternal(url)
 
-            // var path = "";
-            // for(i = 0; i<curpath.length; i++) {
-            //   path += curpath[i] + "\\";
-            // }
-            // var curnode = root.get(curpath.slice(0));
-            //
-            // parseName(link.getAttribute("data-filename"));
-            //
-            // path += link.getAttribute("data-filename");
-            // console.log("Path: " + path);
             localStorage.setItem(url, true);
             console.log("storage url set true");
           });
@@ -85,6 +76,7 @@ function clearNodes() {
   }
 }
 
+
 // takes list of myfile objs, turns into nodes and draws
 function initialise(myfileslist) {
   root = new Node("Root", "");
@@ -101,22 +93,33 @@ function initialise(myfileslist) {
   localStorage.setItem("files", JSON.stringify(myfileslist));
 }
 
+function isVideoFormat(name) {
+  videoexts = ['.mkv', '.mp4', '.avi', '.mov', '.webm'];
+
+  ext = path.extname(name);
+  console.log("name: " + name);
+  console.log("ext = " + ext);
+
+  if(videoexts.indexOf(ext) >= 0) return true;
+  return false;
+
+}
+
 // recieves data from main when folder selected
 ipcRenderer.on("RootFolder", (event, data) => {
   console.log("folder from main recieved!" + data);
   myfilelist = [];
 
-
-  //TODO: lots of duplicate code with initialise() same in start.js
-  fs.readdir(data, (err, files) => {
-    console.log(files);
+  // gets list of dirent objects
+  fs.readdir(data, {withFileTypes: true}, (err, files) => {
     files.forEach((item) => {
-      abspath = data + '\\' + item
-      console.log(abspath);
-      split = [item];
-      console.log(split);
 
-      myfilelist.push(new MyFile(abspath, split));
+      abspath = data + '\\' + item.name
+      split = [item.name];
+
+        if (item.isDirectory() || isVideoFormat(item.name)) {
+        myfilelist.push(new MyFile(abspath, split));
+      }
     });
 
     initialise(myfilelist)
