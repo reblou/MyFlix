@@ -3,7 +3,10 @@
 ##Features
 
 -get folder controls moved to folder
-  -group show into one node instead of file system structure
+  -get sub folder file structure info
+
+-group show into one node instead of file system structure
+  -root "show" page
 
 -being able to select more than one folder ?
 
@@ -24,6 +27,7 @@
 
 ##code
 
+-add Readme.md
 
 
 #bugs:

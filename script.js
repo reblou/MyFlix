@@ -1,6 +1,7 @@
 const {shell, ipcRenderer } = require('electron')
 const fs = require('fs')
 const path = require('path')
+const nodedir = require('node-dir')
 
 
 function addListeners(links) {
@@ -97,12 +98,28 @@ function isVideoFormat(name) {
   videoexts = ['.mkv', '.mp4', '.avi', '.mov', '.webm'];
 
   ext = path.extname(name);
-  console.log("name: " + name);
-  console.log("ext = " + ext);
 
   if(videoexts.indexOf(ext) >= 0) return true;
   return false;
 
+}
+
+function filesToMyFiles(root, files) {
+  myfilelist = [];
+  files.forEach((abspath) => {
+    // + 1 to remove starting \
+    relpath = abspath.substring(root.length + 1);
+
+    // need to check if directory or video
+      // if (item.isDirectory()) {
+      //   myfilelist.push(new MyFile(abspath, split));
+      //   getFSstructure(filelist, abspath, rp);
+      // } else if (isVideoFormat(item.name)) {
+      //   myfilelist.push(new MyFile(abspath, split));
+      // }
+    myfilelist.push(new MyFile(abspath, relpath.split("\\")))
+  });
+  initialise(myfilelist);
 }
 
 // recieves data from main when folder selected
@@ -110,19 +127,9 @@ ipcRenderer.on("RootFolder", (event, data) => {
   console.log("folder from main recieved!" + data);
   myfilelist = [];
 
-  // gets list of dirent objects
-  fs.readdir(data, {withFileTypes: true}, (err, files) => {
-    files.forEach((item) => {
-
-      abspath = data + '\\' + item.name
-      split = [item.name];
-
-        if (item.isDirectory() || isVideoFormat(item.name)) {
-        myfilelist.push(new MyFile(abspath, split));
-      }
-    });
-
-    initialise(myfilelist)
-
-  });
+  console.log("node-dir output");
+  nodedir.files(data, (err, files) => {
+    if (err) throw err;
+    filesToMyFiles(data, files);
+  })
 });

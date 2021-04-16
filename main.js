@@ -6,21 +6,8 @@ let win;
 // open folder menu option func
 function openRootFolder() {
   dialog.showOpenDialog({properties: ['openDirectory']}).then(result => {
-    // console.log(result.filePaths);
-    // fs.readdir(result.filePaths[0], (err, files) => {
-    //   var path = result.filePaths[0];
-    //   console.log(files);
-    //   files.forEach((item, i) => {
-    //     abspath = path+'\\'+item
-    //     console.log(abspath);
-    //     split = [item];
-    //     console.log(split);
-    //   });
-    //   win.webContents.send("test", "hello");
-    //
-    // });
+    // only sends first option
     win.webContents.send("RootFolder", result.filePaths[0]);
-
   })
 }
 
