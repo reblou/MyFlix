@@ -1,9 +1,8 @@
 class Node {
-  constructor(name, link, parent) {
+  constructor(name, link) {
     this.children = [];
     this.name = name;
     this.link = link;
-    this.parent = parent;
   }
 
   create(layer, path, name) {
@@ -13,13 +12,17 @@ class Node {
       }
     }
 
-    if(layer > 1) {
-      //folder
-      this.children.push(new Node(name, "javascript:;", this));
-    } else if (layer == 1) {
-      //file
-      this.children.push(new Node(name, "file://" + path, this));
-    }
+    // if(layer > 1) {
+    //   //folder
+    //   this.children.push(new Node(name, "javascript:;", this));
+    // } else if (layer == 1) {
+    //   //file
+    //   this.children.push(new Node(name, "file://" + path, this));
+    // }
+
+    //all nodes go to details page
+    this.children.push(new Node(name, "details.html"))
+    // this.children.push(new Node(name, "javascript:;"))
     return this.children[this.children.length-1];
   }
 
@@ -57,6 +60,17 @@ class Node {
     }
     console.log("error couldn't find: " + n);
     return -1;
+  }
+
+  // get child node from name
+  getChild(name) {
+    console.log("Get Child")
+    for (var i = 0; i < this.children.length; i++) {
+      if (this.children[i].name === name) return this.children[i];
+    }
+    console.log("Error couldn't find child " + name);
+    return null
+
   }
 
   getnodelist(array) {

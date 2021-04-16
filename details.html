@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <h1 id="header">Test</h1>
+
+  <script type="text/javascript">
+    name = localStorage.getItem("detailsName");
+    document.getElementById("header").innerHTML = name;
+    myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
+    console.log(myfiles);
+
+    //TODO: turn list of myfiles into nodes
+
+
+  </script>
+</body>
+</html>

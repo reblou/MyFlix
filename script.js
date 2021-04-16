@@ -3,36 +3,52 @@ const fs = require('fs')
 const path = require('path')
 const nodedir = require('node-dir')
 
+rootDir = ""
+
+// turn list of filenames in root dir to myfileslist
+function filesToMyFiles(root, files) {
+  myfilelist = [];
+  files.forEach((abspath) => {
+    // + 1 to remove starting \
+    relpath = abspath.substring(root.length + 1);
+
+    split = relpath.split("\\");
+    filename = split[split.length-1];
+    if (isVideoFormat(filename)) {
+      myfilelist.push(new MyFile(abspath, split))
+    }
+  });
+  return myfilelist;
+}
 
 function addListeners(links) {
   links.forEach((link) => {
         const url = link.getAttribute('href');
-        if (url == "javascript:;") {
-          //for folder clicks
-          link.addEventListener('click', (e) => {
-            var s = link.innerHTML;
-            var fn = link.getAttribute("data-filename");
-            console.log("folder click fn: " + fn);
-            curpath.push(fn);
+        // set storage for each node for details page to use
+        link.addEventListener('click', (e) => {
+          localStorage.setItem('detailsName', link.innerHTML);
+          var filename = link.getAttribute("data-filename")
+          // node = root.getChild(filename);
+          // if (node != null) {
+          //   console.log("CLICKED NODE: ");
+          //   // node.print(0);
+          //   // need to turn filelist into myfile array
+          //
+          //   // json = JSON.stringify(node);
+          //   // localStorage.setItem('detailsNode', json);
+          // }
+          abpth = rootDir + "\\" + filename
+          console.log("path: " + abpth)
 
-            var next = root.get(curpath.slice(0));
-            drawNodes(next);
-            console.log("Curpath: ");
-            for(i=0; i<curpath.length; i++) {
-              console.log(curpath[i]);
-            }
-          });
-        } else if (url.indexOf('file://') === 0) {
-          //for file clicks
-          link.addEventListener('click', (e) => {
-            console.log("Trying to open: " + url);
-            e.preventDefault()
-            shell.openExternal(url)
+          nodedir.files(abpth, (err, files) => {
+            // console.log(files);
+            myfiles = filesToMyFiles(abpth, files);
+            // console.log(myfiles)
+            json = JSON.stringify(myfiles);
+            localStorage.setItem("detailsMyFiles", json);
+          })
 
-            localStorage.setItem(url, true);
-            console.log("storage url set true");
-          });
-        }
+        });
     });
 }
 
@@ -82,6 +98,7 @@ function clearNodes() {
 function initialise(myfileslist) {
   root = new Node("Root", "");
   curpath = [];
+  rootDir = localStorage.getItem("rootdir");
 
   myfileslist.forEach((item) => {
     spt = item.split.slice();
@@ -104,29 +121,16 @@ function isVideoFormat(name) {
 
 }
 
-function filesToMyFiles(root, files) {
-  myfilelist = [];
-  files.forEach((abspath) => {
-    // + 1 to remove starting \
-    relpath = abspath.substring(root.length + 1);
-
-    split = relpath.split("\\");
-    filename = split[split.length-1];
-    if (isVideoFormat(filename)) {
-      myfilelist.push(new MyFile(abspath, split))
-    }
-  });
-  initialise(myfilelist);
-}
-
 // recieves data from main when folder selected
 ipcRenderer.on("RootFolder", (event, data) => {
   console.log("folder from main recieved!" + data);
+  rootDir = data;
+  localStorage.setItem("rootdir", data);
   myfilelist = [];
 
   console.log("node-dir output");
   nodedir.files(data, (err, files) => {
     if (err) throw err;
-    filesToMyFiles(data, files);
+    initialise(filesToMyFiles(data, files));
   })
 });

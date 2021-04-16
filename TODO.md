@@ -4,6 +4,8 @@
 
 -group show into one node instead of file system structure
   -root "show" page
+    -convert myfiles array into node in details.html
+  -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
 
@@ -25,6 +27,9 @@
 ##code
 
 -add Readme.md
+-cs in own folders
+-js in own folder
+
 
 
 #bugs:
