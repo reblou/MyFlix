@@ -110,14 +110,11 @@ function filesToMyFiles(root, files) {
     // + 1 to remove starting \
     relpath = abspath.substring(root.length + 1);
 
-    // need to check if directory or video
-      // if (item.isDirectory()) {
-      //   myfilelist.push(new MyFile(abspath, split));
-      //   getFSstructure(filelist, abspath, rp);
-      // } else if (isVideoFormat(item.name)) {
-      //   myfilelist.push(new MyFile(abspath, split));
-      // }
-    myfilelist.push(new MyFile(abspath, relpath.split("\\")))
+    split = relpath.split("\\");
+    filename = split[split.length-1];
+    if (isVideoFormat(filename)) {
+      myfilelist.push(new MyFile(abspath, split))
+    }
   });
   initialise(myfilelist);
 }

@@ -2,9 +2,6 @@
 
 ##Features
 
--get folder controls moved to folder
-  -get sub folder file structure info
-
 -group show into one node instead of file system structure
   -root "show" page
 
