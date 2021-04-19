@@ -28,26 +28,22 @@ function addListeners(links) {
         link.addEventListener('click', (e) => {
           localStorage.setItem('detailsName', link.innerHTML);
           var filename = link.getAttribute("data-filename")
-          // node = root.getChild(filename);
-          // if (node != null) {
-          //   console.log("CLICKED NODE: ");
-          //   // node.print(0);
-          //   // need to turn filelist into myfile array
-          //
-          //   // json = JSON.stringify(node);
-          //   // localStorage.setItem('detailsNode', json);
-          // }
           abpth = rootDir + "\\" + filename
-          console.log("path: " + abpth)
+          // console.log("path: " + abpth)
 
-
-          //TODO: check if dir or not
-          var files = nodedir.files(abpth, {sync:true});
-          // console.log(files);
+          var files;
+          if(fs.lstatSync(abpth).isDirectory()) {
+            files = nodedir.files(abpth, {sync:true});
+            // console.log(files);
+          } else {
+            files = [abpth];
+          }
           myfiles = filesToMyFiles(abpth, files);
           // console.log(myfiles)
           json = JSON.stringify(myfiles);
           localStorage.setItem("detailsMyFiles", json);
+
+
 
 
         });
@@ -59,7 +55,7 @@ function drawNode(type, text, href) {
         var a = document.createElement(type);
         a.classList.add("ns");
 
-        test = localStorage.getItem(href);
+        // test = localStorage.getItem(href);
         // console.log("test: " + test);
         if (localStorage.getItem(href)) {
           a.classList.add("ns-watched");
@@ -99,7 +95,6 @@ function clearNodes() {
 // takes list of myfile objs, turns into nodes and draws
 function initialise(myfileslist) {
   root = new Node("Root", "");
-  curpath = [];
   rootDir = localStorage.getItem("rootdir");
 
   myfileslist.forEach((item) => {

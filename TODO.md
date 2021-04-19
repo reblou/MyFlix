@@ -4,8 +4,7 @@
 
 -group show into one node instead of file system structure
   -root "show" page
-    -back button
-    -convert myfiles array into node in details.html
+    -nodes displayed on page
   -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
@@ -26,6 +25,8 @@
 -instructions on empty root folder screen
 
 ##code
+
+-resuse code between main script and detailsload
 
 -add Readme.md
 -cs in own folders
