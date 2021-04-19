@@ -62,3 +62,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on("goBack", () => {
+  win.webContents.goBack();
+})

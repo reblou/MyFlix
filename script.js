@@ -40,13 +40,15 @@ function addListeners(links) {
           abpth = rootDir + "\\" + filename
           console.log("path: " + abpth)
 
-          nodedir.files(abpth, (err, files) => {
-            // console.log(files);
-            myfiles = filesToMyFiles(abpth, files);
-            // console.log(myfiles)
-            json = JSON.stringify(myfiles);
-            localStorage.setItem("detailsMyFiles", json);
-          })
+
+          //TODO: check if dir or not
+          var files = nodedir.files(abpth, {sync:true});
+          // console.log(files);
+          myfiles = filesToMyFiles(abpth, files);
+          // console.log(myfiles)
+          json = JSON.stringify(myfiles);
+          localStorage.setItem("detailsMyFiles", json);
+
 
         });
     });

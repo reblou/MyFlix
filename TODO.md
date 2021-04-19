@@ -4,6 +4,7 @@
 
 -group show into one node instead of file system structure
   -root "show" page
+    -back button
     -convert myfiles array into node in details.html
   -open folder working from details without adding nodes to the page?
 
