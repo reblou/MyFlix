@@ -23,7 +23,8 @@ function filesToMyFiles(root, files) {
 
 function addListeners(links) {
   links.forEach((link) => {
-        const url = link.getAttribute('href');
+        link.href = "details.html"
+        
         // set storage for each node for details page to use
         link.addEventListener('click', (e) => {
           localStorage.setItem('detailsName', link.innerHTML);
@@ -42,55 +43,51 @@ function addListeners(links) {
           // console.log(myfiles)
           json = JSON.stringify(myfiles);
           localStorage.setItem("detailsMyFiles", json);
-
-
-
-
         });
     });
 }
 
-function drawNode(type, text, href) {
-        let div = document.createElement("div");
-        var a = document.createElement(type);
-        a.classList.add("ns");
-
-        // test = localStorage.getItem(href);
-        // console.log("test: " + test);
-        if (localStorage.getItem(href)) {
-          a.classList.add("ns-watched");
-          // console.log("is watched.");
-        }
-
-        var link = document.createTextNode(parseName(text));
-        a.appendChild(link);
-        a.setAttribute("data-filename", text);
-
-        // a.href = "file://" + item.path;
-        a.href = href;
-        div.appendChild(a);
-        document.body.appendChild(div);
-}
-
-function drawNodes(node) {
-  clearNodes();
-  node.children.forEach(item => {
-    drawNode("a", item.name, item.link);
-  });
-
-  var links = document.querySelectorAll('a');
-  addListeners(links);
-}
-
-function clearNodes() {
-  var x = document.getElementsByClassName("ns");
-  // console.log("Clearnodes length of ns class elems: " + x.length);
-  var len = x.length
-  while(x[0]) {
-    x[0].remove();
-  }
-}
-
+// function drawNode(type, text, href) {
+//         let div = document.createElement("div");
+//         var a = document.createElement(type);
+//         a.classList.add("ns");
+//
+//         // test = localStorage.getItem(href);
+//         // console.log("test: " + test);
+//         if (localStorage.getItem(href)) {
+//           a.classList.add("ns-watched");
+//           // console.log("is watched.");
+//         }
+//
+//         var link = document.createTextNode(parseName(text));
+//         a.appendChild(link);
+//         a.setAttribute("data-filename", text);
+//
+//         // a.href = "file://" + item.path;
+//         a.href = href;
+//         div.appendChild(a);
+//         document.body.appendChild(div);
+// }
+//
+// function drawNodes(node) {
+//   clearNodes();
+//   node.children.forEach(item => {
+//     drawNode("a", item.name, item.link);
+//   });
+//
+//   var links = document.querySelectorAll('a');
+//   addListeners(links);
+// }
+//
+// function clearNodes() {
+//   var x = document.getElementsByClassName("ns");
+//   // console.log("Clearnodes length of ns class elems: " + x.length);
+//   var len = x.length
+//   while(x[0]) {
+//     x[0].remove();
+//   }
+// }
+//
 
 // takes list of myfile objs, turns into nodes and draws
 function initialise(myfileslist) {
@@ -104,6 +101,8 @@ function initialise(myfileslist) {
 
   root.print(0);
   drawNodes(root);
+  var links = document.querySelectorAll('a');
+  addListeners(links);
   console.log(myfileslist);
   localStorage.setItem("files", JSON.stringify(myfileslist));
 }

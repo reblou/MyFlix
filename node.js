@@ -21,8 +21,9 @@ class Node {
     // }
 
     //all nodes go to details page
-    this.children.push(new Node(name, "details.html"))
+    // this.children.push(new Node(name, "details.html"))
     // this.children.push(new Node(name, "javascript:;"))
+    this.children.push(new Node(name, "file://" + path, this));
     return this.children[this.children.length-1];
   }
 

@@ -4,7 +4,9 @@
 
 -group show into one node instead of file system structure
   -root "show" page
-    -nodes displayed on page
+    -nodes look
+    -correct for single files
+    -recursive drawnodes
   -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?

@@ -1,7 +1,20 @@
-const {ipcRenderer} = require('electron')
+const {ipcRenderer, shell} = require('electron')
 
 function back() {
 ipcRenderer.send("goBack", 'sendData');
+}
+
+// adds listener to open all links externally in video player
+function listeners(links) {
+  links.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      var filename = link.getAttribute("data-filename");
+      var url = link.getAttribute("href");
+      e.preventDefault();
+      shell.openExternal(url)
+      localStorage.setItem(url, true);
+    });
+  });
 }
 
 name = localStorage.getItem("detailsName");
@@ -17,22 +30,6 @@ myfiles.forEach((item) => {
 
 root.print(0);
 
-root.children.forEach(item => {
-  div = document.createElement("div");
-  a = document.createElement("a");
-  a.classList.add("nl");
-
-  if (localStorage.getItem(item.link)) {
-    a.classList.add("ns-watched");
-  }
-
-  link = document.createTextNode(parseName(item.name));
-  a.appendChild(link);
-  a.setAttribute("data-filename", item.name);
-
-  //TODO: this is details.html because of node.js code
-  //TODO: not recursive
-  a.href = item.link;
-  div.appendChild(a);
-  document.body.appendChild(div);
-});
+//TODO: not recursive
+drawNodes(root);
+listeners(document.querySelectorAll('a'));
