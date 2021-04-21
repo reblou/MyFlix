@@ -24,7 +24,7 @@ function filesToMyFiles(root, files) {
 function addListeners(links) {
   links.forEach((link) => {
         link.href = "details.html"
-        
+
         // set storage for each node for details page to use
         link.addEventListener('click', (e) => {
           localStorage.setItem('detailsName', link.innerHTML);
@@ -100,7 +100,7 @@ function initialise(myfileslist) {
   });
 
   root.print(0);
-  drawNodes(root);
+  drawNodes(root, "ns");
   var links = document.querySelectorAll('a');
   addListeners(links);
   console.log(myfileslist);

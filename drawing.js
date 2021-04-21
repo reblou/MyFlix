@@ -1,13 +1,13 @@
 
-function drawNode(type, text, href) {
+function drawNode(type, text, href, cls) {
         let div = document.createElement("div");
         var a = document.createElement(type);
-        a.classList.add("ns");
+        a.classList.add(cls);
 
         // test = localStorage.getItem(href);
         // console.log("test: " + test);
         if (localStorage.getItem(href)) {
-          a.classList.add("ns-watched");
+          a.classList.add(cls + "-watched");
           // console.log("is watched.");
         }
 
@@ -21,15 +21,15 @@ function drawNode(type, text, href) {
         document.body.appendChild(div);
 }
 
-function drawNodes(node) {
-  clearNodes();
+function drawNodes(node, cls) {
+  clearNodes(cls);
   node.children.forEach(item => {
-    drawNode("a", item.name, item.link);
+    drawNode("a", item.name, item.link, cls);
   });
 }
 
-function clearNodes() {
-  var x = document.getElementsByClassName("ns");
+function clearNodes(cls) {
+  var x = document.getElementsByClassName(cls);
   // console.log("Clearnodes length of ns class elems: " + x.length);
   var len = x.length
   while(x[0]) {

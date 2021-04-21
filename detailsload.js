@@ -31,5 +31,5 @@ myfiles.forEach((item) => {
 root.print(0);
 
 //TODO: not recursive
-drawNodes(root);
+drawNodes(root, "nd");
 listeners(document.querySelectorAll('a'));
