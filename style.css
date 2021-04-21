@@ -23,6 +23,25 @@ html {
   background-color: #cc3399;
 }
 
+.nd {
+  /* padding:2px; */
+  background-color: #f2f2f2;
+  color: #000000;
+  text-decoration: none;
+  font-size: 15px;
+  /* width: 200px; */
+  /* height: 150px; */
+  outline: 1px solid;
+  clear: both;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.nd-div {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 a:hover {
   color: #ffffff;
   background-color: #4d4d4d;

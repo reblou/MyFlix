@@ -6,7 +6,7 @@
   -root "show" page
     -nodes look
     -correct for single files
-    -recursive drawnodes
+    -clicking on folder opens first child file ?
   -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?

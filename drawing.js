@@ -3,6 +3,7 @@ function drawNode(type, text, href, cls) {
         let div = document.createElement("div");
         var a = document.createElement(type);
         a.classList.add(cls);
+        div.classList.add(cls + "-div");
 
         // test = localStorage.getItem(href);
         // console.log("test: " + test);
@@ -11,7 +12,8 @@ function drawNode(type, text, href, cls) {
           // console.log("is watched.");
         }
 
-        var link = document.createTextNode(parseName(text));
+        // var link = document.createTextNode(parseName(text));
+        var link = document.createTextNode(text);
         a.appendChild(link);
         a.setAttribute("data-filename", text);
 
@@ -26,6 +28,29 @@ function drawNodes(node, cls) {
   node.children.forEach(item => {
     drawNode("a", item.name, item.link, cls);
   });
+}
+
+function drawNodesRec(node, cls) {
+  clearNodes(cls);
+  node.children.forEach(item => {
+    drawNode("a", item.name, item.link, cls);
+    drawChildren(item, cls, 1);
+  });
+}
+
+function drawChildren(node, cls, depth) {
+  var prefix = "";
+  for (var i = 0; i<depth; i++) {
+    prefix += "_";
+  }
+  //TODO: data- attribute for depth to style?
+  // depth argument to draw
+  node.children.forEach(item => {
+    console.log("name:" + prefix + item.name);
+    drawNode("a", prefix + item.name, item.link, cls);
+    drawChildren(item, cls, depth+1);
+  });
+
 }
 
 function clearNodes(cls) {
