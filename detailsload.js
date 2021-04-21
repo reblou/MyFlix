@@ -22,14 +22,14 @@ document.getElementById("header").innerHTML = name;
 myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
 console.log(myfiles);
 
-root = new Node("Root", "");
+myroot = new Node("Root", "");
 myfiles.forEach((item) => {
   spt = item.split.slice();
-  root.add(item.path, spt);
+  myroot.add(item.path, spt);
 });
 
-root.print(0);
+myroot.print(0);
 
 //TODO: not recursive
-drawNodesRec(root, "nd");
+drawNodesRec(myroot, "nd");
 listeners(document.querySelectorAll('a'));
