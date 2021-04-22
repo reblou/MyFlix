@@ -1,5 +1,5 @@
 
-function drawNode(type, text, href, cls, depth) {
+function drawNode(type, text, href, cls, depth, pretty) {
         let div = document.createElement("div");
         var a = document.createElement(type);
         a.classList.add(cls);
@@ -12,8 +12,12 @@ function drawNode(type, text, href, cls, depth) {
           // console.log("is watched.");
         }
 
-        // var link = document.createTextNode(parseName(text));
-        var link = document.createTextNode(text);
+        var link;
+        if (pretty) {
+          link = document.createTextNode(parseName(text));
+        } else {
+          link = document.createTextNode(text);
+        }
         a.appendChild(link);
         a.setAttribute("data-filename", text);
         var padding = 20 * depth;
@@ -30,28 +34,21 @@ function drawNode(type, text, href, cls, depth) {
 function drawNodes(node, cls) {
   clearNodes(cls);
   node.children.forEach(item => {
-    drawNode("a", item.name, item.link, cls);
+    drawNode("a", item.name, item.link, cls, 0, true);
   });
 }
 
 function drawNodesRec(node, cls) {
   clearNodes(cls);
   node.children.forEach(item => {
-    drawNode("a", item.name, item.link, cls);
+    drawNode("a", item.name, item.link, cls, 0, false);
     drawChildren(item, cls, 1);
   });
 }
 
 function drawChildren(node, cls, depth) {
-  var prefix = "";
-  // for (var i = 0; i<depth; i++) {
-  //   prefix += "_";
-  // }
-  //TODO: data- attribute for depth to style?
-  // depth argument to draw
   node.children.forEach(item => {
-    console.log("name:" + prefix + item.name);
-    drawNode("a", prefix + item.name, item.link, cls, depth);
+    drawNode("a", item.name, item.link, cls, depth, false);
     drawChildren(item, cls, depth+1);
   });
 

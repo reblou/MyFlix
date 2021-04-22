@@ -30,6 +30,5 @@ myfiles.forEach((item) => {
 
 myroot.print(0);
 
-//TODO: not recursive
 drawNodesRec(myroot, "nd");
 listeners(document.querySelectorAll('a'));

@@ -4,7 +4,6 @@
 
 -group show into one node instead of file system structure
   -root "show" page
-    -correct for single files
     -clicking on folder opens first child file ?
   -open folder working from details without adding nodes to the page?
 
@@ -19,7 +18,6 @@
 
 -css look of nodes
   -folder vs file look?
--regex to clear up names
 
 -get show icons
 
@@ -27,10 +25,8 @@
 
 ##code
 
--resuse code between main script and detailsload
-
 -add Readme.md
--cs in own folders
+-css in own folders
 -js in own folder
 
 
