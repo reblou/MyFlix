@@ -1,5 +1,5 @@
 
-function drawNode(type, text, href, cls) {
+function drawNode(type, text, href, cls, depth) {
         let div = document.createElement("div");
         var a = document.createElement(type);
         a.classList.add(cls);
@@ -16,11 +16,15 @@ function drawNode(type, text, href, cls) {
         var link = document.createTextNode(text);
         a.appendChild(link);
         a.setAttribute("data-filename", text);
+        var padding = 20 * depth;
+        a.style.padding = "0px 0px 0px "+ padding + "px";
 
         // a.href = "file://" + item.path;
         a.href = href;
         div.appendChild(a);
-        document.body.appendChild(div);
+        // document.body.appendChild(div);
+        document.getElementById(cls + "-container").appendChild(div);
+
 }
 
 function drawNodes(node, cls) {
@@ -40,14 +44,14 @@ function drawNodesRec(node, cls) {
 
 function drawChildren(node, cls, depth) {
   var prefix = "";
-  for (var i = 0; i<depth; i++) {
-    prefix += "_";
-  }
+  // for (var i = 0; i<depth; i++) {
+  //   prefix += "_";
+  // }
   //TODO: data- attribute for depth to style?
   // depth argument to draw
   node.children.forEach(item => {
     console.log("name:" + prefix + item.name);
-    drawNode("a", prefix + item.name, item.link, cls);
+    drawNode("a", prefix + item.name, item.link, cls, depth);
     drawChildren(item, cls, depth+1);
   });
 

@@ -20,18 +20,18 @@ html {
 
 .ns-watched {
   text-decoration-color: #cc3399;
-  background-color: #cc3399;
+  background-color: #b3b3b3;
 }
 
 .nd {
   /* padding:2px; */
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   color: #000000;
   text-decoration: none;
   font-size: 15px;
   /* width: 200px; */
   /* height: 150px; */
-  outline: 1px solid;
+  /* outline: 1px solid; */
   clear: both;
   text-align: left;
   word-wrap: break-word;
@@ -40,6 +40,12 @@ html {
 .nd-div {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.nd-container {
+  background-color: #f2f2f2;
+  outline: 1px solid;
+  margin:5px;
 }
 
 a:hover {

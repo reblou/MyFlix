@@ -4,7 +4,6 @@
 
 -group show into one node instead of file system structure
   -root "show" page
-    -nodes look
     -correct for single files
     -clicking on folder opens first child file ?
   -open folder working from details without adding nodes to the page?
