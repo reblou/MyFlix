@@ -2,16 +2,14 @@
 
 ##Features
 
--group show into one node instead of file system structure
-  -root "show" page
-    -clicking on folder opens first child file ?
-  -open folder working from details without adding nodes to the page?
+-open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
 
 -needs refresh button to update files according to file system/ refresh on startup ?
 
 -remember watched
+  -play next button
   -unwatch button
 
 -hide folders option

@@ -18,10 +18,9 @@ html {
   word-wrap: break-word;
 }
 
-.ns-watched {
+/* .ns-watched {
   text-decoration-color: #cc3399;
-  background-color: #b3b3b3;
-}
+} */
 
 .nd {
   /* padding:2px; */
@@ -29,17 +28,21 @@ html {
   color: #000000;
   text-decoration: none;
   font-size: 15px;
-  /* width: 200px; */
-  /* height: 150px; */
-  /* outline: 1px solid; */
   clear: both;
   text-align: left;
   word-wrap: break-word;
+  width: auto;
+  display:block;
+}
+
+.nd-watched {
+  background-color: #b3b3b3;
 }
 
 .nd-div {
   margin-top: 0px;
   margin-bottom: 0px;
+  width: auto;
 }
 
 .nd-container {

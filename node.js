@@ -12,18 +12,18 @@ class Node {
       }
     }
 
-    // if(layer > 1) {
-    //   //folder
-    //   this.children.push(new Node(name, "javascript:;", this));
-    // } else if (layer == 1) {
-    //   //file
-    //   this.children.push(new Node(name, "file://" + path, this));
-    // }
+    if(layer > 1) {
+      //folder
+      this.children.push(new Node(name, "javascript:;", this));
+    } else if (layer == 1) {
+      //file
+      this.children.push(new Node(name, "file://" + path, this));
+    }
 
     //all nodes go to details page
     // this.children.push(new Node(name, "details.html"))
     // this.children.push(new Node(name, "javascript:;"))
-    this.children.push(new Node(name, "file://" + path, this));
+    // this.children.push(new Node(name, "file://" + path, this));
     return this.children[this.children.length-1];
   }
 

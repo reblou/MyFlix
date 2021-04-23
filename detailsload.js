@@ -8,11 +8,15 @@ ipcRenderer.send("goBack", 'sendData');
 function listeners(links) {
   links.forEach((link) => {
     link.addEventListener('click', (e) => {
-      var filename = link.getAttribute("data-filename");
+      // var filename = link.getAttribute("data-filename");
       var url = link.getAttribute("href");
-      e.preventDefault();
-      shell.openExternal(url)
-      localStorage.setItem(url, true);
+
+      if(url.indexOf('file://') == 0) {
+        e.preventDefault();
+        shell.openExternal(url)
+        localStorage.setItem(url, true);
+        link.classList.add("nd-watched");
+      }
     });
   });
 }
