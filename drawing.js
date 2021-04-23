@@ -12,6 +12,9 @@ function drawNode(type, text, href, cls, depth, pretty) {
           // console.log("is watched.");
         }
 
+        var img = localStorage.getItem("poster");
+        a.style.backgroundImage  = "url(" + img + ")";
+
         var link;
         if (pretty) {
           link = document.createTextNode(parseName(text));

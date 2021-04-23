@@ -90,3 +90,22 @@ ipcRenderer.on("RootFolder", (event, data) => {
     initialise(filesToMyFiles(data, files));
   })
 });
+
+async function sendRequest() {
+  var key = config.MY_KEY;
+  var url = "http://www.omdbapi.com/?apikey=" + key + "&i=tt3896198";
+  var response = await fetch(url);
+  console.log(response);
+  // console.log(response.json());
+  console.log("API!");
+  return response.json();
+}
+
+ipcRenderer.on("API", (event) => {
+  // then says what to with result once api result comes back
+  sendRequest().then(result => {
+
+    console.log(result);
+    localStorage.setItem("poster", result.Poster);
+  });
+});

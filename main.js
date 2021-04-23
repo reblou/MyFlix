@@ -30,6 +30,12 @@ function createWindow () {
             openRootFolder();
           }
         },
+        {
+          label: 'Query API',
+          click () {
+            win.webContents.send("API");
+          }
+        },
         {role: 'reload',
         accelerator: 'Ctrl+R'
         },

@@ -18,15 +18,18 @@
   -folder vs file look?
 
 -get show icons
+  -get icon for each show
+  -sep draw from details and main nodes See below
 
 -instructions on empty root folder screen
 
 ##code
 
+-separate draw for details and main nodes
+
 -add Readme.md
 -css in own folders
 -js in own folder
-
 
 
 #bugs:
