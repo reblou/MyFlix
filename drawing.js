@@ -22,7 +22,7 @@ function drawNodeMain(text, href) {
   }
 
   let img = localStorage.getItem("poster");
-  a.style.backgroundImage  = "url(" + img + ")";
+  // a.style.backgroundImage  = "url(" + img + ")";
 
   let link = document.createTextNode(parseName(text));
 

@@ -26,13 +26,13 @@ document.getElementById("header").innerHTML = name;
 myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
 console.log(myfiles);
 
-myroot = new Node("Root", "");
+let root = new Node("Root", "");
 myfiles.forEach((item) => {
   spt = item.split.slice();
-  myroot.add(item.path, spt);
+  root.add(item.path, spt);
 });
 
-myroot.print(0);
+root.print(0);
 
-drawNodesDetails(myroot, "nd");
+drawNodesDetails(root, "nd");
 listeners(document.querySelectorAll('a'));

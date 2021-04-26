@@ -6,11 +6,11 @@ const nodedir = require('node-dir')
 rootDir = ""
 
 // turn list of filenames in root dir to myfileslist
-function filesToMyFiles(myroot, files) {
+function filesToMyFiles(root, files) {
   myfilelist = [];
   files.forEach((abspath) => {
     // + 1 to remove starting \
-    relpath = abspath.substring(myroot.length + 1);
+    relpath = abspath.substring(root.length + 1);
 
     split = relpath.split("\\");
     filename = split[split.length-1];
@@ -51,16 +51,16 @@ function addListeners(links) {
 
 // takes list of myfile objs, turns into nodes and draws
 function initialise(myfileslist) {
-  myroot = new Node("Root", "");
+  let root = new Node("Root", "");
   rootDir = localStorage.getItem("rootdir");
 
   myfileslist.forEach((item) => {
     spt = item.split.slice();
-    myroot.add(item.path, spt);
+    root.add(item.path, spt);
   });
 
-  myroot.print(0);
-  drawNodesMain(myroot, "ns");
+  root.print(0);
+  drawNodesMain(root, "ns");
   var links = document.querySelectorAll('a');
   addListeners(links);
   console.log(myfileslist);
