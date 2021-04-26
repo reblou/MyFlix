@@ -60,7 +60,7 @@ function initialise(myfileslist) {
   });
 
   myroot.print(0);
-  drawNodes(myroot, "ns");
+  drawNodesMain(myroot, "ns");
   var links = document.querySelectorAll('a');
   addListeners(links);
   console.log(myfileslist);

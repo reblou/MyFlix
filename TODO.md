@@ -25,7 +25,7 @@
 
 ##code
 
--separate draw for details and main nodes
+-classes in draw functions hard coded problem(?)
 
 -add Readme.md
 -css in own folders

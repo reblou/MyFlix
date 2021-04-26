@@ -34,5 +34,5 @@ myfiles.forEach((item) => {
 
 myroot.print(0);
 
-drawNodesRec(myroot, "nd");
+drawNodesDetails(myroot, "nd");
 listeners(document.querySelectorAll('a'));
