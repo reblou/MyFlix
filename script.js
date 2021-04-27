@@ -105,21 +105,48 @@ async function sendRequest(title) {
   return response.json();
 }
 
+function sendRequests(links) {
+  let promises = [];
+  links.forEach((item) => {
+    let title = item.innerHTML;
+    let p = sendRequest(title);
+    promises.push(p);
+    p.then(result => {
+      if (result.Response == "True") {
+        // console.log(result);
+        // console.log("storing: " + title);
+        localStorage.setItem(title, result.Poster);
+      }
+    });
+  });
+  return promises;
+}
+
 ipcRenderer.on("API", (event) => {
   // then says what to with result once api result comes back
   var links = document.querySelectorAll('a');
-  links.forEach((item) => {
-    let title = item.innerHTML;
-    sendRequest(title).then(result => {
-      if (result.Response == "True") {
-        console.log(result);
-        console.log("storing: " + title);
-        localStorage.setItem(title, result.Poster);
-      } 
+  let proms = sendRequests(links);
+  // console.log(proms);
+  Promise.all(proms).then(results => {
+    console.log("all complete");
+    console.log(results);
 
+    let files = localStorage.getItem("files");
+    let fsp = JSON.parse(files);
+    initialise(fsp);
 
-    });
-  });
+  })
+
+  // links.forEach((item) => {
+  //   let title = item.innerHTML;
+  //   sendRequest(title).then(result => {
+  //     if (result.Response == "True") {
+  //       console.log(result);
+  //       console.log("storing: " + title);
+  //       localStorage.setItem(title, result.Poster);
+  //     }
+  //   });
+  // });
 
 
 });
