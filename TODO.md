@@ -19,7 +19,6 @@
 
 -get show icons
  -manual search option
- -better cleanup for searching
 
 
 -instructions on empty root folder screen
@@ -31,6 +30,8 @@
 ##code
 
 -classes in draw functions hard coded problem(?)
+
+-ready-to-show for windows?
 
 -add Readme.md
 -css in own folders

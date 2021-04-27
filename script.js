@@ -123,7 +123,6 @@ function sendRequests(links) {
 }
 
 ipcRenderer.on("API", (event) => {
-  // then says what to with result once api result comes back
   var links = document.querySelectorAll('a');
   let proms = sendRequests(links);
   // console.log(proms);
@@ -136,17 +135,4 @@ ipcRenderer.on("API", (event) => {
     initialise(fsp);
 
   })
-
-  // links.forEach((item) => {
-  //   let title = item.innerHTML;
-  //   sendRequest(title).then(result => {
-  //     if (result.Response == "True") {
-  //       console.log(result);
-  //       console.log("storing: " + title);
-  //       localStorage.setItem(title, result.Poster);
-  //     }
-  //   });
-  // });
-
-
 });

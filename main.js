@@ -36,6 +36,13 @@ function createWindow () {
             win.webContents.send("API");
           }
         },
+        {
+          label: 'Open Dev Tools',
+          accelerator: "Ctrl+Shift+I",
+          click() {
+            win.webContents.openDevTools();
+          }
+        },
         {role: 'reload',
         accelerator: 'Ctrl+R'
         },
@@ -71,4 +78,15 @@ app.on('activate', () => {
 
 ipcMain.on("goBack", () => {
   win.webContents.goBack();
+})
+
+ipcMain.on("openUpdateWindow", () => {
+  console.log("Openwin in main");
+  let formwin = new BrowserWindow({
+    height:500,
+    width:700
+  })
+
+  formwin.loadFile("updateform.html");
+  formwin.webContents.openDevTools();
 })
