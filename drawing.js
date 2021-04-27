@@ -15,16 +15,21 @@ function drawNodeMain(text, href) {
   a.classList.add("ns");
   div.classList.add("ns-div");
 
-  // test = localStorage.getItem(href);
-  // console.log("test: " + test);
   if (localStorage.getItem(href)) {
     a.classList.add("ns-watched");
   }
 
-  let img = localStorage.getItem("poster");
-  // a.style.backgroundImage  = "url(" + img + ")";
+  let name = parseName(text);
+  let link = document.createTextNode(name);
 
-  let link = document.createTextNode(parseName(text));
+  // if (img !== undefined) {
+  //   a.style.backgroundImage  = "url(" + img + ")";
+  // }
+  let img = localStorage.getItem(name);
+  if (img !== null) {
+    a.style.backgroundImage  = "url(" + img + ")";
+  }
+
 
   a.appendChild(link);
   a.setAttribute("data-filename", text);
@@ -33,6 +38,7 @@ function drawNodeMain(text, href) {
   a.href = href;
   div.appendChild(a);
   // document.body.appendChild(div);
+
   document.getElementById("ns-container").appendChild(div);
 }
 
@@ -50,8 +56,6 @@ function drawNodeDetails(text, href, depth) {
   a.classList.add("nd");
   div.classList.add("nd-div");
 
-  // test = localStorage.getItem(href);
-  // console.log("test: " + test);
   if (localStorage.getItem(href)) {
     a.classList.add("nd-watched");
     // console.log("is watched.");

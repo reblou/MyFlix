@@ -18,10 +18,15 @@
   -folder vs file look?
 
 -get show icons
-  -get icon for each show
-  -sep draw from details and main nodes See below
+ -manual search option
+ -better cleanup for searching
+
 
 -instructions on empty root folder screen
+-check if storage empty before initialise
+
+-clear storage menu item
+
 
 ##code
 

@@ -54,16 +54,15 @@ function initialise(myfileslist) {
   let root = new Node("Root", "");
   rootDir = localStorage.getItem("rootdir");
 
+  //TODO: check if null
   myfileslist.forEach((item) => {
     spt = item.split.slice();
     root.add(item.path, spt);
   });
 
-  root.print(0);
   drawNodesMain(root, "ns");
   var links = document.querySelectorAll('a');
   addListeners(links);
-  console.log(myfileslist);
   localStorage.setItem("files", JSON.stringify(myfileslist));
 }
 
@@ -91,21 +90,36 @@ ipcRenderer.on("RootFolder", (event, data) => {
   })
 });
 
-async function sendRequest() {
+async function sendRequest(title) {
   var key = config.MY_KEY;
-  var url = "http://www.omdbapi.com/?apikey=" + key + "&i=tt3896198";
+  let t = title.replace(/^\s+/g, "");
+  t = t.replace(/\s+$/g, "");
+  t = t.replace(/\s+/g, "+");
+  var url = "http://www.omdbapi.com/?apikey=" + key + "&t=" + t;
   var response = await fetch(url);
-  console.log(response);
+
+
+  // console.log(response);
   // console.log(response.json());
-  console.log("API!");
+  console.log("API searching: " + url);
   return response.json();
 }
 
 ipcRenderer.on("API", (event) => {
   // then says what to with result once api result comes back
-  sendRequest().then(result => {
+  var links = document.querySelectorAll('a');
+  links.forEach((item) => {
+    let title = item.innerHTML;
+    sendRequest(title).then(result => {
+      if (result.Response == "True") {
+        console.log(result);
+        console.log("storing: " + title);
+        localStorage.setItem(title, result.Poster);
+      } 
 
-    console.log(result);
-    localStorage.setItem("poster", result.Poster);
+
+    });
   });
+
+
 });
