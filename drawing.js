@@ -2,7 +2,6 @@
 function clearNodes(cls) {
   var x = document.getElementsByClassName(cls);
   // console.log("Clearnodes length of ns class elems: " + x.length);
-  var len = x.length
   while(x[0]) {
     x[0].remove();
   }

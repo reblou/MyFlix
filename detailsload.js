@@ -5,16 +5,6 @@ function back() {
 }
 
 function update() {
-    // const remote = require('electron').remote;
-    // const BrowserWindow = remote.BrowserWindow;
-    // let win = new BrowserWindow({
-    //   height:500,
-    //   width:700,
-    // });
-    //
-    // win.webContents.openDevTools();
-    // win.loadURL("updateform.html");
-
   // window.open("updateform.html", "Update Form", "width=700, height=500");
   ipcRenderer.send("openUpdateWindow", "data")
 }

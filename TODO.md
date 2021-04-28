@@ -2,6 +2,7 @@
 
 ##Features
 
+
 -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
@@ -19,6 +20,7 @@
 
 -get show icons
  -manual search option
+  -save results from search on button press
 
 
 -instructions on empty root folder screen
@@ -28,6 +30,8 @@
 
 
 ##code
+
+-Switch to TMDb api?
 
 -classes in draw functions hard coded problem(?)
 
