@@ -16,7 +16,8 @@ function createWindow () {
     width: 1500,
     height: 800,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 
@@ -84,7 +85,11 @@ ipcMain.on("openUpdateWindow", () => {
   console.log("Openwin in main");
   let formwin = new BrowserWindow({
     height:500,
-    width:700
+    width:700,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
   })
 
   formwin.loadFile("updateform.html");

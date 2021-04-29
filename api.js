@@ -14,3 +14,5 @@ async function sendRequest(title) {
   console.log("API searching: " + url);
   return response.json();
 }
+
+// https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
