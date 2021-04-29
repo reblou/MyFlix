@@ -1,18 +1,27 @@
 async function sendRequest(title) {
-  var key = config.MY_KEY;
-  let t = title.replace(/^\s+/g, "");
-  t = t.replace(/\s+$/g, "");
-  t = t.replace(/\s+/g, "+");
-  var url = "http://www.omdbapi.com/?apikey=" + key + "&t=" + t;
-  // HOW TO SEARCH FOR AN EPISODE:
-  // var url = "http://www.omdbapi.com/?apikey=" + key + "&t=" + t + "&Season=1&Episode=1";
+  let key = config.TMDb_KEY;
+
+  let t = title.replace(/\s+/g, "+");
+  let url = "https://api.themoviedb.org/3/search/multi?api_key=" + key + "&query=" + t;
+
+  // console.log("API searching: " + url);
   var response = await fetch(url);
 
-
-  // console.log(response);
-  // console.log(response.json());
-  console.log("API searching: " + url);
   return response.json();
 }
 
-// https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
+async function getConfig() {
+  let key = config.TMDb_KEY;
+  let url = "https://api.themoviedb.org/3/configuration?api_key=" + key;
+
+  let response = await fetch(url);
+
+  return response.json();
+}
+
+function getImageFullUrl(imgfp) {
+  let base = localStorage.getItem("base_url");
+  let size = localStorage.getItem("poster_max_size");
+
+  return base + size + imgfp;
+}
