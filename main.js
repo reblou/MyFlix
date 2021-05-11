@@ -81,7 +81,7 @@ ipcMain.on("goBack", () => {
   win.webContents.goBack();
 })
 
-ipcMain.on("openUpdateWindow", () => {
+ipcMain.on("openUpdateWindow", (event, name) => {
   console.log("Openwin in main");
   let formwin = new BrowserWindow({
     height:500,
@@ -93,5 +93,8 @@ ipcMain.on("openUpdateWindow", () => {
   })
 
   formwin.loadFile("updateform.html");
-  formwin.webContents.openDevTools();
+  formwin.webContents.on('did-finish-load', function() {
+    formwin.webContents.send("UpdateName", name);
+    formwin.webContents.openDevTools();
+  });
 })

@@ -16,7 +16,6 @@
 -hide folders option
 
 -css look of nodes
-  -folder vs file look?
 
 -get show icons
  -manual search option
@@ -30,8 +29,6 @@
 
 
 ##code
-
--Switch to TMDb api?
 
 -classes in draw functions hard coded problem(?)
 

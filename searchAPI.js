@@ -5,21 +5,32 @@ function clear() {
     }
 }
 
+function buttonPress(result) {
+  console.log(result);
+  localStorage.setItem(title, getImageFullUrl(result.poster_path));
+  //todo: close window
+}
+
 function drawResult(result) {
   let elements = [];
   let title = document.createElement("h2");
+  let date = document.createElement("p");
   if (result.media_type == "movie") {
     title.innerHTML = result.title;
+    date.innerHTML = result.release_date;
   } else if (result.media_type == "tv") {
+    date.innerHTML = result.first_air_date;
     title.innerHTML = result.name;
   }
   elements.push(title);
+  elements.push(date);
 
   let desc = document.createElement("p");
   desc.innerHTML = result.overview;
   elements.push(desc);
 
   let img = document.createElement("img");
+  img.classList.add("info-poster");
   let file_path = result.poster_path;
 
   let url = getImageFullUrl(file_path);
@@ -31,13 +42,22 @@ function drawResult(result) {
   img.src = url;
   elements.push(img);
 
+  let button = document.createElement("button");
+  button.innerHTML = "Confirm";
+  button.onclick = function() {
+    buttonPress(result);
+  };
+  elements.push(button);
 
+  let div = document.createElement("div");
+  div.classList.add("info-sub-container");
   elements.forEach((item) => {
     item.classList.add("info");
-    document.getElementById("info-container").appendChild(item);
+    div.appendChild(item);
   });
 
 
+  document.getElementById("info-container").appendChild(div);
 }
 
 
@@ -65,3 +85,11 @@ function enter() {
     });
   }
 }
+
+var ipcRenderer = require('electron').ipcRenderer;
+ipcRenderer.on('UpdateName', function (event, name) {
+    console.log("main ipc recieved");
+    console.log(name);
+    title = name;
+    document.getElementById("header").innerHTML = name;
+});

@@ -90,21 +90,6 @@ ipcRenderer.on("RootFolder", (event, data) => {
   })
 });
 
-// async function sendRequest(title) {
-//   var key = config.MY_KEY;
-//   let t = title.replace(/^\s+/g, "");
-//   t = t.replace(/\s+$/g, "");
-//   t = t.replace(/\s+/g, "+");
-//   var url = "http://www.omdbapi.com/?apikey=" + key + "&t=" + t;
-//   var response = await fetch(url);
-//
-//
-//   // console.log(response);
-//   // console.log(response.json());
-//   console.log("API searching: " + url);
-//   return response.json();
-// }
-
 function sendRequests(links) {
   let promises = [];
   links.forEach((item) => {
@@ -118,19 +103,11 @@ function sendRequests(links) {
     promises.push(p);
     p.then(result => {
       console.log(result);
-      // if results
       if (result.total_results > 0) {
         let first = result.results[0];
-
-          localStorage.setItem(title, getImageFullUrl(first.poster_path));
+        localStorage.setItem(title, getImageFullUrl(first.poster_path));
       }
-      // if (result.Response == "True") {
-      //   // console.log(result);
-      //   // console.log("storing: " + title);
-      // }
     });
-
-
   });
 
   //TODO: cache config

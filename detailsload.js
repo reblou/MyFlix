@@ -6,7 +6,7 @@ function back() {
 
 function update() {
   // window.open("updateform.html", "Update Form", "width=700, height=500");
-  ipcRenderer.send("openUpdateWindow", "data")
+  ipcRenderer.send("openUpdateWindow", name);
 }
 
 // adds listener to open all links externally in video player
