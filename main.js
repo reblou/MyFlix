@@ -2,6 +2,7 @@ const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron')
 const fs = require('fs')
 
 let win;
+let formwin;
 
 // open folder menu option func
 function openRootFolder() {
@@ -83,7 +84,7 @@ ipcMain.on("goBack", () => {
 
 ipcMain.on("openUpdateWindow", (event, name) => {
   console.log("Openwin in main");
-  let formwin = new BrowserWindow({
+  formwin = new BrowserWindow({
     height:500,
     width:700,
     webPreferences: {
@@ -98,3 +99,8 @@ ipcMain.on("openUpdateWindow", (event, name) => {
     formwin.webContents.openDevTools();
   });
 })
+
+
+ipcMain.on("closeForm", (event) => {
+  formwin.close();
+});

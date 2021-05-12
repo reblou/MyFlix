@@ -1,3 +1,5 @@
+var ipcRenderer = require('electron').ipcRenderer;
+
 function clear() {
     var x = document.getElementsByClassName("info");
     while(x[0]) {
@@ -8,7 +10,7 @@ function clear() {
 function buttonPress(result) {
   console.log(result);
   localStorage.setItem(title, getImageFullUrl(result.poster_path));
-  //todo: close window
+  ipcRenderer.send("closeForm");
 }
 
 function drawResult(result) {
@@ -86,7 +88,6 @@ function enter() {
   }
 }
 
-var ipcRenderer = require('electron').ipcRenderer;
 ipcRenderer.on('UpdateName', function (event, name) {
     console.log("main ipc recieved");
     console.log(name);

@@ -19,7 +19,10 @@
 
 -get show icons
  -manual search option
-  -save results from search on button press
+  -look of results
+  -stop auto get from overwriting set posters
+  -move all api code to api.js
+
 
 
 -instructions on empty root folder screen
