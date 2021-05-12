@@ -9,10 +9,11 @@ function clear() {
 
 function buttonPress(result) {
   console.log(result);
-  localStorage.setItem(title, getImageFullUrl(result.poster_path));
+  saveImagePath(title, result.poster_path);
   ipcRenderer.send("closeForm");
 }
 
+//TODO: move api specifics to api.js
 function drawResult(result) {
   let elements = [];
   let title = document.createElement("h2");

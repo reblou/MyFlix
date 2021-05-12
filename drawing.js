@@ -30,6 +30,7 @@ function drawNodeMain(text, href) {
   }
 
 
+  //TODO: not draw name if image, but other code uses innerHTML rather than filename
   a.appendChild(link);
   a.setAttribute("data-filename", text);
 
