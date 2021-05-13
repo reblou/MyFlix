@@ -27,8 +27,9 @@ function addListeners(links) {
 
         // set storage for each node for details page to use
         link.addEventListener('click', (e) => {
-          localStorage.setItem('detailsName', link.innerHTML);
           var filename = link.getAttribute("data-filename")
+          localStorage.setItem('detailsName', link.getAttribute("data-parsedName"));
+          // localStorage.setItem('detailsName', filename);
           abpth = rootDir + "\\" + filename
 
           var files;

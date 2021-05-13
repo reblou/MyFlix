@@ -16,12 +16,15 @@
 -hide folders option
 
 -css look of nodes
+  -enlarge on hover with more buttons + title?
+
+-details screen
+  -poster/ backdrop image & description ? 
 
 -get show icons
  -manual search option
   -look of results
-  -stop auto get from overwriting set posters
-  -move all api code to api.js
+  -cache api config details
 
 
 

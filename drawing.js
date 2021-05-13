@@ -19,20 +19,18 @@ function drawNodeMain(text, href) {
   }
 
   let name = parseName(text);
-  let link = document.createTextNode(name);
 
-  // if (img !== undefined) {
-  //   a.style.backgroundImage  = "url(" + img + ")";
-  // }
   let img = localStorage.getItem(name);
   if (img !== null) {
     a.style.backgroundImage  = "url(" + img + ")";
+  } else {
+    let link = document.createTextNode(name);
+    a.appendChild(link);
   }
 
 
-  //TODO: not draw name if image, but other code uses innerHTML rather than filename
-  a.appendChild(link);
   a.setAttribute("data-filename", text);
+  a.setAttribute("data-parsedName", name);
 
   // a.href = "file://" + item.path;
   a.href = href;

@@ -33,7 +33,8 @@ function saveImagePath(title, poster_path) {
 function sendRequests(links) {
   let promises = [];
   links.forEach((item) => {
-    let title = item.innerHTML;
+    // let title = item.innerHTML;
+    let title = item.getAttribute("data-parsedName");
     // Removes trailing and starting whitespace
     let t = title.replace(/^\s+/g, "");
     t = t.replace(/\s+$/g, "");
@@ -45,7 +46,9 @@ function sendRequests(links) {
       console.log(result);
       if (result.total_results > 0) {
         let first = result.results[0];
-        localStorage.setItem(title, getImageFullUrl(first.poster_path));
+        if (localStorage.getItem(title) === null) {
+          localStorage.setItem(title, getImageFullUrl(first.poster_path));
+        }
       }
     });
   });
