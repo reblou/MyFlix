@@ -26,8 +26,8 @@ function getImageFullUrl(imgfp) {
   return base + size + imgfp;
 }
 
-function saveImagePath(title, poster_path) {
-  localStorage.setItem(title, getImageFullUrl(poster_path));
+function saveImagePath(title, suffix, poster_path) {
+  localStorage.setItem(title + "-" + suffix, getImageFullUrl(poster_path));
 }
 
 function sendRequests(links) {
@@ -46,8 +46,17 @@ function sendRequests(links) {
       console.log(result);
       if (result.total_results > 0) {
         let first = result.results[0];
-        if (localStorage.getItem(title) === null) {
-          localStorage.setItem(title, getImageFullUrl(first.poster_path));
+        if (localStorage.getItem(title + "-poster") === null) {
+          localStorage.setItem(title + "-poster", getImageFullUrl(first.poster_path));
+        }
+
+        // if (localStorage.getItem(title + "-backdrop") === null) {
+        //   localStorage.setItem(title + "-backdrop", getImageFullUrl(first.backdrop_path));
+        // }
+
+        if (first.backdrop_path !== null && localStorage.getItem(title + "-backdrop") === null) {
+          console.log(first.backdrop_path + " = not null")
+          localStorage.setItem(title + "-backdrop", getImageFullUrl(first.backdrop_path));
         }
       }
     });

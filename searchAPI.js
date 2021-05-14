@@ -9,7 +9,8 @@ function clear() {
 
 function buttonPress(result) {
   console.log(result);
-  saveImagePath(title, result.poster_path);
+  saveImagePath(title, "poster", result.poster_path);
+  saveImagePath(title, "backdrop", result.backdrop_path);
   ipcRenderer.send("closeForm");
 }
 
@@ -70,13 +71,6 @@ function enter() {
     let text = document.getElementById('title').value;
     console.log(text);
     sendRequest(text).then( result => {
-      // if (result.Response == "True") {
-      //   console.log(result);
-      //   drawResult(result);
-      // } else {
-      //   console.log("Not Found");
-      // }
-
       if (result.total_results > 0) {
         clear();
         result.results.forEach((item) => {

@@ -20,7 +20,7 @@ function drawNodeMain(text, href) {
 
   let name = parseName(text);
 
-  let img = localStorage.getItem(name);
+  let img = localStorage.getItem(name + "-poster");
   if (img !== null) {
     a.style.backgroundImage  = "url(" + img + ")";
   } else {
