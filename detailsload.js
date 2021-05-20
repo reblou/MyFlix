@@ -42,15 +42,15 @@ root.print(0);
 let backdrop_path = localStorage.getItem(name + "-backdrop");
 if (backdrop_path !== null) {
   console.log("setting backdrop");
-  document.getElementById("backdrop").src = backdrop_path;
+  document.getElementById("backdrop-div").style.backgroundImage = "url(" + backdrop_path + ")";
 }
 
 // sets poster
-// let poster = localStorage.getItem(name + "-poster");
-// if (poster !== null) {
-//   console.log("setting poster");
-//   document.getElementById("poster").src = poster;
-// }
+let poster = localStorage.getItem(name + "-poster");
+if (poster !== null) {
+  console.log("setting poster");
+  document.getElementById("poster").src = poster;
+}
 
 drawNodesDetails(root, "nd");
 listeners(document.querySelectorAll('a'));

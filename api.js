@@ -70,6 +70,8 @@ function sendRequests(links) {
     localStorage.setItem("base_url", config.images.base_url);
     localStorage.setItem("poster_max_size", poster_sizes[poster_sizes.length-1]);
     localStorage.setItem("backdrop_max_size", backdrop_sizes[backdrop_sizes.length-1]);
+    console.log("backdrop sizes");
+    console.log(backdrop_sizes);
   });
 
 

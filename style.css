@@ -1,6 +1,10 @@
-html {
+body.main {
     background: url(https://i.imgur.com/ZqoEU9o.jpg);
     background-size: cover;
+}
+
+body.details {
+  background-color: #cccccc;
 }
 
 .ns {
@@ -66,4 +70,26 @@ a:hover {
 .info-sub-container {
   outline: 1px solid;
   background-color: #f2f2f2;
+}
+
+.backdrop-div {
+  width: 1280px;
+  height: 600px;
+  background-position: top;
+  background-size: cover;
+  position: relative;
+}
+
+#info-div {
+  position: absolute;
+  bottom:0;
+  left:0;
+  width:inherit;
+}
+
+#poster {
+  width: 200px;
+  height: 296px;
+  float:left;
+  background-size:cover;
 }
