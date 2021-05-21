@@ -6,6 +6,7 @@
 -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
+  -organise into tabs? films vs tv vs anime etc ? 
 
 -needs refresh button to update files according to file system/ refresh on startup ?
 
@@ -19,12 +20,16 @@
   -enlarge on hover with more buttons + title?
 
 -details screen
-  -poster/ backdrop image & description ? 
+  -plot summary
+  -update details screen after update form
+  -text readability
+  -prettiness
 
 -get show icons
  -manual search option
   -look of results
   -cache api config details
+  -save images?
 
 
 

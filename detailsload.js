@@ -40,9 +40,13 @@ myfiles.forEach((item) => {
 root.print(0);
 
 let backdrop_path = localStorage.getItem(name + "-backdrop");
+let backdrop_div = document.getElementById("backdrop-div");
 if (backdrop_path !== null) {
   console.log("setting backdrop");
-  document.getElementById("backdrop-div").style.backgroundImage = "url(" + backdrop_path + ")";
+  backdrop_div.style.backgroundImage = "url(" + backdrop_path + ")";
+} else {
+  backdrop_div.classList.remove("has-backdrop");
+  document.getElementById("info-div").classList.remove("has-backdrop");
 }
 
 // sets poster
@@ -50,6 +54,8 @@ let poster = localStorage.getItem(name + "-poster");
 if (poster !== null) {
   console.log("setting poster");
   document.getElementById("poster").src = poster;
+} else {
+  document.getElementById("poster").classList.remove("has-poster");
 }
 
 drawNodesDetails(root, "nd");
