@@ -6,7 +6,7 @@
 -open folder working from details without adding nodes to the page?
 
 -being able to select more than one folder ?
-  -organise into tabs? films vs tv vs anime etc ? 
+  -organise into tabs? films vs tv vs anime etc ?
 
 -needs refresh button to update files according to file system/ refresh on startup ?
 
@@ -21,7 +21,7 @@
 
 -details screen
   -plot summary
-  -update details screen after update form
+  -delete metadata button ?
   -text readability
   -prettiness
 

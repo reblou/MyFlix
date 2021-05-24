@@ -102,5 +102,6 @@ ipcMain.on("openUpdateWindow", (event, name) => {
 
 
 ipcMain.on("closeForm", (event) => {
+  win.webContents.send("redraw")
   formwin.close();
 });

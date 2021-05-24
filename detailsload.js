@@ -26,37 +26,44 @@ function listeners(links) {
   });
 }
 
-name = localStorage.getItem("detailsName");
-document.getElementById("header").innerHTML = name;
-myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
-console.log(myfiles);
+function draw() {
+  name = localStorage.getItem("detailsName");
+  document.getElementById("header").innerHTML = name;
+  myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
 
-let root = new Node("Root", "");
-myfiles.forEach((item) => {
-  spt = item.split.slice();
-  root.add(item.path, spt);
+  let root = new Node("Root", "");
+  myfiles.forEach((item) => {
+    spt = item.split.slice();
+    root.add(item.path, spt);
+  });
+
+  let backdrop_path = localStorage.getItem(name + "-backdrop");
+  let backdrop_div = document.getElementById("backdrop-div");
+  if (backdrop_path !== null) {
+    console.log("setting backdrop");
+    backdrop_div.style.backgroundImage = "url(" + backdrop_path + ")";
+  } else {
+    backdrop_div.classList.remove("has-backdrop");
+    document.getElementById("info-div").classList.remove("has-backdrop");
+  }
+
+  // sets poster
+  let poster = localStorage.getItem(name + "-poster");
+  if (poster !== null) {
+    console.log("setting poster");
+    document.getElementById("poster").src = poster;
+  } else {
+    document.getElementById("poster").classList.remove("has-poster");
+  }
+
+  drawNodesDetails(root, "nd");
+  listeners(document.querySelectorAll('a'));
+}
+
+draw();
+
+
+ipcRenderer.on("redraw", (event) => {
+  console.log("redraw event");
+  draw();
 });
-
-root.print(0);
-
-let backdrop_path = localStorage.getItem(name + "-backdrop");
-let backdrop_div = document.getElementById("backdrop-div");
-if (backdrop_path !== null) {
-  console.log("setting backdrop");
-  backdrop_div.style.backgroundImage = "url(" + backdrop_path + ")";
-} else {
-  backdrop_div.classList.remove("has-backdrop");
-  document.getElementById("info-div").classList.remove("has-backdrop");
-}
-
-// sets poster
-let poster = localStorage.getItem(name + "-poster");
-if (poster !== null) {
-  console.log("setting poster");
-  document.getElementById("poster").src = poster;
-} else {
-  document.getElementById("poster").classList.remove("has-poster");
-}
-
-drawNodesDetails(root, "nd");
-listeners(document.querySelectorAll('a'));
