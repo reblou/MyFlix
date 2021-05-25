@@ -20,8 +20,7 @@
   -enlarge on hover with more buttons + title?
 
 -details screen
-  -plot summary
-  -delete metadata button ?
+  -queryAPI to get backdrop and plot also
   -text readability
   -prettiness
 

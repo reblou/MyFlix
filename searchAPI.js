@@ -11,6 +11,7 @@ function buttonPress(result) {
   console.log(result);
   saveImagePath(title, "poster", result.poster_path);
   saveImagePath(title, "backdrop", result.backdrop_path);
+  localStorage.setItem(title + "-plot", result.overview);
   ipcRenderer.send("closeForm");
 }
 

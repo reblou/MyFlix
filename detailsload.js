@@ -1,12 +1,21 @@
 const {ipcRenderer, shell} = require('electron')
 
+
 function back() {
   ipcRenderer.send("goBack");
 }
 
 function update() {
   // window.open("updateform.html", "Update Form", "width=700, height=500");
-  ipcRenderer.send("openUpdateWindow", name);
+  ipcRenderer.send("openUpdateWindow", localStorage.getItem("detailsName"));
+}
+
+function removeDetails() {
+  let name = localStorage.getItem("detailsName");
+  localStorage.removeItem(name + "-backdrop");
+  localStorage.removeItem(name + "-poster");
+
+  draw();
 }
 
 // adds listener to open all links externally in video player
@@ -27,7 +36,7 @@ function listeners(links) {
 }
 
 function draw() {
-  name = localStorage.getItem("detailsName");
+  let name = localStorage.getItem("detailsName");
   document.getElementById("header").innerHTML = name;
   myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
 
@@ -42,19 +51,27 @@ function draw() {
   if (backdrop_path !== null) {
     console.log("setting backdrop");
     backdrop_div.style.backgroundImage = "url(" + backdrop_path + ")";
+    backdrop_div.classList.add("has-backdrop");
   } else {
     backdrop_div.classList.remove("has-backdrop");
+    backdrop_div.style.backgroundImage = "";
     document.getElementById("info-div").classList.remove("has-backdrop");
   }
 
   // sets poster
-  let poster = localStorage.getItem(name + "-poster");
-  if (poster !== null) {
+  let poster_src = localStorage.getItem(name + "-poster");
+  let poster = document.getElementById("poster");
+  if (poster_src !== null) {
     console.log("setting poster");
-    document.getElementById("poster").src = poster;
+    poster.src = poster_src;
+    poster.classList.add("has-poster");
   } else {
-    document.getElementById("poster").classList.remove("has-poster");
+    poster.src = "";
+    poster.classList.remove("has-poster");
   }
+
+  let plotp = document.getElementById("plot");
+  plotp.innerHTML = localStorage.getItem(name + "-plot");
 
   drawNodesDetails(root, "nd");
   listeners(document.querySelectorAll('a'));
