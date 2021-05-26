@@ -20,8 +20,6 @@
   -enlarge on hover with more buttons + title?
 
 -details screen
-  -queryAPI to get backdrop and plot also
-  -text readability
   -prettiness
 
 -get show icons

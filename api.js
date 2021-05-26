@@ -55,8 +55,11 @@ function sendRequests(links) {
         // }
 
         if (first.backdrop_path !== null && localStorage.getItem(title + "-backdrop") === null) {
-          console.log(first.backdrop_path + " = not null")
           localStorage.setItem(title + "-backdrop", getImageFullUrl(first.backdrop_path));
+        }
+
+        if (first.overview !== null && localStorage.getItem(title + "-plot") === null) {
+          localStorage.setItem(title + "-plot", first.overview);
         }
       }
     });

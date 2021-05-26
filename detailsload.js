@@ -14,7 +14,7 @@ function removeDetails() {
   let name = localStorage.getItem("detailsName");
   localStorage.removeItem(name + "-backdrop");
   localStorage.removeItem(name + "-poster");
-
+  localStorage.removeItem(name + "-plot");
   draw();
 }
 

@@ -83,7 +83,6 @@ ipcMain.on("goBack", () => {
 })
 
 ipcMain.on("openUpdateWindow", (event, name) => {
-  console.log("Openwin in main");
   formwin = new BrowserWindow({
     height:500,
     width:700,
