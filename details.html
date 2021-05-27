@@ -11,17 +11,19 @@
 
 <body class="details">
   <!-- <img id="backdrop" class="backdrop"></img> -->
-  <div id="backdrop-div" class="has-backdrop">
-  </div>
+  <img id="backdrop-div" class="has-backdrop">
+  </img>
+
+  <button id="backbutton" type="button" name="backb" onclick="back()">Back</button>
 
   <div id="details-div" class="details-info">
     <div id="info-div" class="has-backdrop">
       <img id="poster" class="has-poster"></img>
       <h1 id="header">Test</h1>
       <p id="plot"></p>
-      <button type="button" name="backb" onclick="back()">Back</button>
       <button type="button" name="posterb" onclick="update()">Update</button>
       <button type="button" name="deleteb" onclick="removeDetails()">Delete metadata</button>
+      <button type="button" name="playb" onclick="play()">Play Next</button>
     </div>
     <div id="nd-container" class="nd-container"></div>
   </div>
@@ -31,6 +33,7 @@
   <script src="node.js" charset="utf-8"></script>
   <script src="parsing.js" charset="utf-8"></script>
   <script src="drawing.js"></script>
+  <script src="playnext.js" charset="utf-8"></script>
   <script src="detailsload.js" charset="utf-8"></script>
 
 </body>

@@ -29,6 +29,7 @@ function addListeners(links) {
         link.addEventListener('click', (e) => {
           var filename = link.getAttribute("data-filename")
           localStorage.setItem('detailsName', link.getAttribute("data-parsedName"));
+          localStorage.setItem("detailsFileName", filename);
           // localStorage.setItem('detailsName', filename);
           abpth = rootDir + "\\" + filename
 

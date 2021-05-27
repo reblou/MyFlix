@@ -4,7 +4,8 @@ body.main {
 }
 
 body.details {
-  background-color: #cccccc;
+  background-color: #1a1a1a;
+  margin: 0;
 }
 
 .ns {
@@ -74,8 +75,8 @@ a:hover {
 }
 
 #backdrop-div.has-backdrop {
-  width: 1280px;
-  height: 600px;
+  /* width: 1280px; */
+  width: 100vw;
   background-position: top;
   background-size: cover;
   position: relative;
@@ -98,10 +99,21 @@ a:hover {
 
 #poster {
   float:left;
+  margin: 5px;
+}
+
+#backbutton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  width: 75px;
+  height: 75px;
 }
 
 #poster.has-poster {
   width: 200px;
   height: 296px;
   background-size:cover;
+  outline: none;
 }

@@ -11,7 +11,7 @@
 -needs refresh button to update files according to file system/ refresh on startup ?
 
 -remember watched
-  -play next button
+  -watch button on main
   -unwatch button
 
 -hide folders option

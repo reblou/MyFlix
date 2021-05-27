@@ -49,8 +49,8 @@ function draw() {
   let backdrop_path = localStorage.getItem(name + "-backdrop");
   let backdrop_div = document.getElementById("backdrop-div");
   if (backdrop_path !== null) {
-    console.log("setting backdrop");
-    backdrop_div.style.backgroundImage = "url(" + backdrop_path + ")";
+    // backdrop_div.style.kgroundImage = "url(" + backdrop_path + ")";
+    backdrop_div.src = backdrop_path;
     backdrop_div.classList.add("has-backdrop");
   } else {
     backdrop_div.classList.remove("has-backdrop");
@@ -62,7 +62,6 @@ function draw() {
   let poster_src = localStorage.getItem(name + "-poster");
   let poster = document.getElementById("poster");
   if (poster_src !== null) {
-    console.log("setting poster");
     poster.src = poster_src;
     poster.classList.add("has-poster");
   } else {
@@ -77,10 +76,22 @@ function draw() {
   listeners(document.querySelectorAll('a'));
 }
 
+function play() {
+  let myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
+  let root = new Node("Root", "");
+
+  myfiles.forEach((item) => {
+    spt = item.split.slice();
+    root.add(item.path, spt);
+  });
+
+  let rootdir = localStorage.getItem("rootdir") + "\\" + localStorage.getItem("detailsFileName");
+  playNext(localStorage.getItem("detailsName"), root, rootdir)
+  draw();
+}
+
 draw();
 
-
 ipcRenderer.on("redraw", (event) => {
-  console.log("redraw event");
   draw();
 });
