@@ -18,12 +18,14 @@
 
   <div id="details-div" class="details-info">
     <div id="info-div" class="has-backdrop">
-      <img id="poster" class="has-poster"></img>
+      <div id="poster-div">
+        <img id="poster" class="has-poster"></img>
+        <button type="button" id="playb" class="playbutton" onclick="play()"></button>
+      </div>
       <h1 id="header">Test</h1>
       <p id="plot"></p>
       <button type="button" name="posterb" onclick="update()">Update</button>
       <button type="button" name="deleteb" onclick="removeDetails()">Delete metadata</button>
-      <button type="button" name="playb" onclick="play()">Play Next</button>
       <button type="button" name="unwatchb" onclick="unwatch()">Unwatch</button>
     </div>
     <div id="nd-container" class="nd-container"></div>

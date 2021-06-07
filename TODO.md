@@ -12,7 +12,9 @@
 
 -remember watched
   -watch button on main
-  -unwatch button
+  -unwatch button for individual files
+  -watch from list affecting watch next?
+
 
 -hide folders option
 
@@ -21,6 +23,7 @@
 
 -details screen
   -prettiness
+  -redraw on delete/ update issues
 
 -get show icons
  -manual search option
