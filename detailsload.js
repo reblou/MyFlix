@@ -18,6 +18,11 @@ function removeDetails() {
   draw();
 }
 
+function unwatch() {
+  let name = localStorage.getItem("detailsName");
+  localStorage.removeItem(name + "-next");
+}
+
 // adds listener to open all links externally in video player
 function listeners(links) {
   links.forEach((link) => {
