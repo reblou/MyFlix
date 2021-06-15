@@ -21,6 +21,12 @@ function removeDetails() {
 function unwatch() {
   let name = localStorage.getItem("detailsName");
   localStorage.removeItem(name + "-next");
+  let myfiles = JSON.parse(localStorage.getItem("detailsMyFiles"))
+  myfiles.forEach((item) => {
+    let path = item.path;
+    localStorage.removeItem("file://" + path)
+  });
+  draw();
 }
 
 // adds listener to open all links externally in video player
