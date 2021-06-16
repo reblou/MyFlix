@@ -67,7 +67,13 @@ function drawNodeDetails(text, href, depth) {
   a.style.padding = "0px 0px 0px "+ padding + "px";
 
   a.href = href;
+
+  let del = document.createElement("button");
+  del.id = href;
+  del.classList.add("nd-button");
+
   div.appendChild(a);
+  div.appendChild(del);
   document.getElementById("nd-container").appendChild(div);
 }
 

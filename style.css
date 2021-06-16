@@ -39,6 +39,7 @@ body.details {
   word-wrap: break-word;
   width: auto;
   display:block;
+  float: left;
 }
 
 .nd-watched {
@@ -56,6 +57,13 @@ body.details {
   outline: 1px solid;
   margin:5px;
   float: none;
+}
+
+.nd-button {
+  align-self: right;
+  margin: auto;
+  width: inherit;
+  height: inherit;
 }
 
 a:hover {
