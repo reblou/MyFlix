@@ -59,11 +59,18 @@ body.details {
   float: none;
 }
 
-.nd-button {
-  align-self: right;
-  margin: auto;
-  width: inherit;
-  height: inherit;
+.nd-div-button {
+  background-image: url("trash-fill.svg");
+  height: 20px;
+  width: 20px;
+  box-sizing: border-box;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  background-origin:content-box;
+  border: none;
 }
 
 a:hover {

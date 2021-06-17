@@ -70,7 +70,7 @@ function drawNodeDetails(text, href, depth) {
 
   let del = document.createElement("button");
   del.id = href;
-  del.classList.add("nd-button");
+  del.classList.add("nd-div-button");
 
   div.appendChild(a);
   div.appendChild(del);
