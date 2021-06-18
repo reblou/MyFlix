@@ -49,10 +49,12 @@ function drawNodesMain(node, cls) {
 }
 
 function drawNodeDetails(text, href, depth) {
-  let div = document.createElement("div");
+  let tr = document.createElement("tr");
+  let atd = document.createElement("td");
+  let btd = document.createElement("td");
   var a = document.createElement("a");
+
   a.classList.add("nd");
-  div.classList.add("nd-div");
 
   if (localStorage.getItem(href)) {
     a.classList.add("nd-watched");
@@ -68,13 +70,22 @@ function drawNodeDetails(text, href, depth) {
 
   a.href = href;
 
-  let del = document.createElement("button");
+  let del = document.createElement("input");
   del.id = href;
+  del.type = "image";
+  del.src = "trash-fill.svg";
   del.classList.add("nd-div-button");
 
-  div.appendChild(a);
-  div.appendChild(del);
-  document.getElementById("nd-container").appendChild(div);
+  atd.appendChild(a);
+  btd.appendChild(del);
+  atd.classList.add("nd-td");
+  btd.classList.add("nd-td");
+
+  tr.appendChild(atd);
+  tr.appendChild(btd);
+  tr.classList.add("nd-tr");
+  document.getElementById("nd-table").appendChild(tr);
+
 }
 
 

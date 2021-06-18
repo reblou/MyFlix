@@ -39,7 +39,7 @@ body.details {
   word-wrap: break-word;
   width: auto;
   display:block;
-  float: left;
+  /* float: left; */
 }
 
 .nd-watched {
@@ -60,9 +60,10 @@ body.details {
 }
 
 .nd-div-button {
-  background-image: url("trash-fill.svg");
-  height: 20px;
-  width: 20px;
+  /* background-image: url("trash-fill.svg"); */
+  /* src: url("trash-fill.svg"); */
+  height: auto;
+  width: auto;
   box-sizing: border-box;
   background-size: contain;
   background-position: center;
@@ -71,6 +72,26 @@ body.details {
   cursor: pointer;
   background-origin:content-box;
   border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.files-table {
+  width: 100%;
+  border-spacing: 0px;
+  border-width: 0px;
+  border-collapse: collapse;
+}
+
+.nd-td {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.nd-tr {
+  padding: 0px;
+  margin: 0px;
 }
 
 a:hover {
